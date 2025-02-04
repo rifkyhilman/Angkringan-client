@@ -19,7 +19,9 @@ const Navbar = () => {
         <>        
             <div className="flex justify-between  items-center bg-black text-white p-5">
                 <div className="ml-[7rem] font-bold text-2xl max-sm:ml-5">
-                    <h1>Angkringan</h1>
+                    <a href="/">
+                        <h1>Angkringan</h1>
+                    </a>
                 </div>
                 <div className="flex justify-between items-center mr-[7rem] max-sm:hidden">
                     <span className="mr-3">Admin</span>
