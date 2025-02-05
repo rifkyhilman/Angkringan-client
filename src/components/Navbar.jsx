@@ -9,17 +9,23 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
-import { LogOut } from "lucide-react";
+} from "@/components/ui/dropdown-menu"
+import { 
+    LogOut, 
+    House, 
+    ShoppingCart, 
+    Users 
+} from "lucide-react";
+
 
 
 
 const Navbar = () => {
     return (
         <>        
-            <div className="flex justify-between  items-center bg-black text-white p-5">
+            <div className="flex justify-between items-center bg-black text-white p-5">
                 <div className="ml-[7rem] font-bold text-2xl max-sm:ml-5">
-                    <a href="/">
+                    <a href="/dashboard">
                         <h1>Angkringan</h1>
                     </a>
                 </div>
@@ -73,8 +79,27 @@ const Navbar = () => {
                     </Sheet>
                 </div>
             </div>
-            <div className="bg-slate-500">
-                
+            <div className="bg-slate-400">      
+                <ul className="ml-[7rem] flex p-3">
+                    <li>
+                        <a href="">
+                            <i><House /></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i><ShoppingCart /></i>
+                            <p>Pesan</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i><Users /></i>
+                            <p>Pengguna</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </>
     )
