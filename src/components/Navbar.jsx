@@ -24,23 +24,33 @@ const Navbar = () => {
         {
             icon: <House/>,
             span: "DASHBOARD",
-            link: "/dashboard"
+            link: "dashboard"
         },
         {
             icon: <ShoppingCart/>,
             span: "ORDER",
-            link: "/order"
+            link: "order"
         },
         {
             icon: <Users/>,
             span: "PENGGUNA",
-            link: "/users"
+            link: "users"
         }
     ];
 
 
     let {pathname} = useLocation();
-    console.log(pathname);
+    let subpage = pathname.split('/')?.[1]
+
+    const linkness = (type = null) => {
+        let classes = "flex mr-9 py-3 "
+
+        if(type === subpage){
+            classes += "border-2 border-b-black font-bold"
+        } 
+
+        return classes
+    }
 
     return (
         <>        
@@ -107,14 +117,14 @@ const Navbar = () => {
                     </Sheet>
                 </div>
             </div>
-            <div className="bg-gray-200 text-gray-700  max-sm:hidden">      
-                <NavigationMenu className="ml-[8rem] p-3">
+            <div className="bg-gray-200 text-gray-500 max-sm:hidden">      
+                <NavigationMenu className="ml-[9rem]">
                     <NavigationMenuList>
                         {dataLink.map(data => {
                             return (
                             <NavigationMenuItem key={data.span}>
                                 <Link to={data.link}>
-                                    <NavigationMenuLink className="flex mr-9">
+                                    <NavigationMenuLink className={linkness(data.link)}>
                                         <i className="mr-1.5">{data.icon}</i>
                                         <span>{data.span}</span>
                                     </NavigationMenuLink>

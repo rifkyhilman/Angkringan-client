@@ -14,13 +14,13 @@ const App = () => {
       element:<LayoutPage/>,
       children:[
         {
-          path:'dashboard',
+          path:'/dashboard',
           element:<DashboardPage/>
         },   {
-          path:'order',
+          path:'/order',
           element:<OrderPage/>
         },   {
-          path:'users',
+          path:'/users',
           element:<UsersPage/>
         },
       ]
