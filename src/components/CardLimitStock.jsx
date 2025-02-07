@@ -12,7 +12,7 @@ const CardLimitStock = () => {
             <CardHeader className="border-b-2 border-b-gray-200">
                 <CardTitle className="text-md font-bold">STOK BARANG TIPIS</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 pb-0 overflow-y-auto">
+            <CardContent className="flex-1 pb-0 overflow-y-auto no-scrollbar">
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
                 <div className="grid grid-flow-col grid-rows-3 gap-2">
                     <div className="row-span-3 mx-auto">
