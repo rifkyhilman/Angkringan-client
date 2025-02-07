@@ -54,11 +54,11 @@ const Navbar = () => {
 
     return (
         <>        
-            <div className="flex justify-between items-center text-white border-b-transparent bg-black p-5">
-                <div className="ml-[7rem] font-bold text-2xl max-sm:ml-5">
+            <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem]">
+                <div className="font-bold text-2xl max-sm:ml-5">
                     <h1>Angkringan</h1>
                 </div>
-                <div className="mr-[7rem] max-sm:hidden">
+                <div className="max-sm:hidden">
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>

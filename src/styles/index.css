@@ -64,3 +64,8 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+  .container {
+    padding: 1rem 5.3rem 1rem 5.3rem;
+  }
+}
