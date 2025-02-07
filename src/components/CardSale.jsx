@@ -1,16 +1,25 @@
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+
 const CardSale = () => {
     return(
-        <div className="border-2 border-gray-200 rounded-lg px-5 py-2">
-            <div className="text-gray-500 mb-2">
-                <p>Penjualan Hari ini</p>
-            </div>
-            <div className=" font-bold border-b-2 border-b-gray-200 pb-2">
-                <p>0</p>
-            </div>
-            <div className="font-bold mt-1">
-                <p>Rp 0,00</p>
-            </div>
-      </div>      
+        <Card className="px-5 pt-3">
+            <CardHeader className= "py-2">
+                <CardTitle className="text-sm text-gray-400 uppercase">Penjualan Hari ini</CardTitle>
+            </CardHeader>
+            <CardContent className="font-bold">     
+                <div className="border-b-2 border-b-gray-200 pb-2">
+                    <p>180</p>
+                </div>
+                <div className="mt-1">
+                    <p>Rp 2,000,000,00</p>
+                </div>
+            </CardContent>
+        </Card>      
     )
 }
 
