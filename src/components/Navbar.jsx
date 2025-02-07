@@ -112,7 +112,7 @@ const Navbar = () => {
                     </Sheet>
                 </div>
             </div>
-            <div className="bg-gray-200 text-gray-500 max-sm:hidden">      
+            <div className="sticky top-0 bg-gray-200 text-gray-500 max-sm:hidden">      
                 <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
                         {dataLink.map(data => {
