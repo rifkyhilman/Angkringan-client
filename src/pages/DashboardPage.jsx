@@ -1,3 +1,4 @@
+import CardLimitStock from "@/components/CardLimitStock";
 import CardPie from "@/components/CardPie";
 import CardSale from "@/components/CardSale";
 
@@ -16,8 +17,9 @@ const DashboardPage = () => {
                 <CardSale/>
                 <CardSale/>
             </section>
-            <section>
+            <section className="grid grid-cols-2 gap-6">
                 <CardPie/>
+                <CardLimitStock/>
             </section>
         </div>
     )
