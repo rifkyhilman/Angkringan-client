@@ -1,3 +1,4 @@
+import CardPie from "@/components/CardPie";
 import CardSale from "@/components/CardSale";
 
 const DashboardPage = () => {
@@ -14,6 +15,9 @@ const DashboardPage = () => {
                 <CardSale/>
                 <CardSale/>
                 <CardSale/>
+            </section>
+            <section>
+                <CardPie/>
             </section>
         </div>
     )
