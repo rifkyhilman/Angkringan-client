@@ -17,7 +17,7 @@ const DashboardPage = () => {
                 <CardSale/>
                 <CardSale/>
             </section>
-            <section className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
+            <section className="grid grid-cols-3 gap-6  max-md:grid-cols-1">
                 <CardPie/>
                 <CardLimitStock/>
             </section>
