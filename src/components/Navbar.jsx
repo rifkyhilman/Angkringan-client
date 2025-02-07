@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -43,10 +43,10 @@ const Navbar = () => {
     let subpage = pathname.split('/')?.[1]
 
     const linkness = (type = null) => {
-        let classes = "flex mr-9 py-3 "
+        let classes = "border-b-2 border-b-transparent"
 
         if(type === subpage){
-            classes += "border-2 border-b-black font-bold"
+            classes = "border-b-2 border-b-black text-black"
         } 
 
         return classes
@@ -54,11 +54,9 @@ const Navbar = () => {
 
     return (
         <>        
-            <div className="flex justify-between items-center text-white bg-black p-5">
+            <div className="flex justify-between items-center text-white border-b-transparent bg-black p-5">
                 <div className="ml-[7rem] font-bold text-2xl max-sm:ml-5">
-                    <Link to="/dashboard">
-                        <h1>Angkringan</h1>
-                    </Link>
+                    <h1>Angkringan</h1>
                 </div>
                 <div className="mr-[7rem] max-sm:hidden">
                     <NavigationMenu>
@@ -90,20 +88,17 @@ const Navbar = () => {
                         </SheetTrigger>
                         <SheetContent side="right">
                             <SheetHeader>
-                                <SheetTitle>Menu</SheetTitle>
-                                <SheetDescription>
-                                    Pilih menu di bawah ini.
-                                </SheetDescription>
+                                <SheetTitle>Admin</SheetTitle>
                             </SheetHeader>
-                            <div className="mt-4 space-y-2">
+                            <div className="mt-[4rem]">
                                 <NavigationMenu>
                                     <NavigationMenuList className="flex flex-col items-baseline">
                                         {dataLink.map(data => {
                                             return (
                                             <NavigationMenuItem key={data.span}>
                                                 <Link to={data.link}>
-                                                    <NavigationMenuLink className="flex">
-                                                        <i>{data.icon}</i>
+                                                    <NavigationMenuLink className={linkness(data.link)}>
+                                                        <i className="mr-1.5">{data.icon}</i>
                                                         <span>{data.span}</span>
                                                     </NavigationMenuLink>
                                                 </Link>
@@ -118,15 +113,15 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="bg-gray-200 text-gray-500 max-sm:hidden">      
-                <NavigationMenu className="ml-[9rem]">
+                <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
                         {dataLink.map(data => {
                             return (
                             <NavigationMenuItem key={data.span}>
                                 <Link to={data.link}>
-                                    <NavigationMenuLink className={linkness(data.link)}>
+                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness(data.link)}`}>
                                         <i className="mr-1.5">{data.icon}</i>
-                                        <span>{data.span}</span>
+                                        <span className="text-sm pt-[5px]">{data.span}</span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
