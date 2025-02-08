@@ -1,10 +1,10 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 // import Pagination
+import NotFoundPage from './pages/NotFoundPage';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
-import NotFoundPage from './pages/NotFoundPage';
-import OrderPage from './pages/orderPage';
+import TransactionPage from './pages/TransactionPage';
 import UsersPage from './pages/usersPage';
 import LayoutPage from './pages/LayoutPage';
 
@@ -17,8 +17,8 @@ const App = () => {
           path:'/dashboard',
           element:<DashboardPage/>
         },   {
-          path:'/order',
-          element:<OrderPage/>
+          path:'/transaction',
+          element:<TransactionPage/>
         },   {
           path:'/users',
           element:<UsersPage/>

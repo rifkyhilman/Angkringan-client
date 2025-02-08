@@ -31,8 +31,8 @@ const Navbar = () => {
         },
         {
             icon: <ShoppingCart/>,
-            span: "ORDER",
-            link: "order"
+            span: "TRANSAKSI",
+            link: "transaction"
         },
         {
             icon: <Users/>,
