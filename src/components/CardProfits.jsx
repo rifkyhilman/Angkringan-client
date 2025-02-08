@@ -9,7 +9,7 @@ const CardProfits = () => {
     return (
         <Card className="px-5 pt-3">
             <CardHeader className= "py-2">
-                <CardTitle className="text-sm text-gray-400 uppercase">Laba Bersih Hari ini</CardTitle>
+                <CardTitle className="text-xs text-gray-400 uppercase">Laba Bersih Hari ini</CardTitle>
             </CardHeader>
             <CardContent className="font-bold">     
                 <div className="mt-3 text-base">
