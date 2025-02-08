@@ -1,16 +1,18 @@
 import Kopi from "../../assets/img/products/Kopi_aren.png";
+import { Button } from "@/components/ui/button"
 import {
     Card,
     CardContent,
     CardHeader,
+    CardFooter,
     CardTitle,
   } from "@/components/ui/card"
 
-const CardLimitStock = () => {
-    return(
+const CardOrderItems = () => {
+    return (
         <Card className="flex flex-col my-5 h-[30rem]">
             <CardHeader className="border-b-2 border-b-gray-200">
-                <CardTitle className="text-md font-bold">STOK BARANG TIPIS</CardTitle>
+                <CardTitle className="text-md uppercase">item pesanan</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto no-scrollbar">
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
@@ -50,8 +52,16 @@ const CardLimitStock = () => {
                     </div>
                 </Card>
             </CardContent>
+            <CardFooter>
+                <div>
+                    Total Rp. 10k
+                </div>
+                <div>
+                    <Button> Order </Button>
+                </div>
+            </CardFooter>
         </Card>      
     )
 }
 
-export default CardLimitStock;
+export default CardOrderItems;
