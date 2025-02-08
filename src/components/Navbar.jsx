@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -14,7 +15,9 @@ import {
     LogOut, 
     House, 
     ShoppingCart, 
-    Users 
+    Users,
+    Moon,
+    Sun
 } from "lucide-react";
 
 
@@ -50,6 +53,13 @@ const Navbar = () => {
         } 
 
         return classes
+    }
+
+    const [dark, setDark] = useState(false);
+
+    const darkModeHandler = () => {
+        setDark(!dark);
+        document.body.classList.toggle("dark");
     }
 
     return (
@@ -112,7 +122,7 @@ const Navbar = () => {
                     </Sheet>
                 </div>
             </div>
-            <div className="sticky top-0 bg-gray-200 text-gray-500 max-sm:hidden">      
+            <div className="sticky top-0 bg-gray-200 text-gray-500 flex justify-between max-sm:hidden">      
                 <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
                         {dataLink.map(data => {
@@ -128,6 +138,16 @@ const Navbar = () => {
                             )}
                         )}
                     </NavigationMenuList>
+                </NavigationMenu>
+                <NavigationMenu className="mr-[10rem]">
+                    <button onClick={()=> darkModeHandler()}>
+                        {   
+                            dark && <Sun />
+                        }
+                        {
+                            !dark && <Moon />
+                        }
+                    </button>
                 </NavigationMenu>
             </div>
         </>
