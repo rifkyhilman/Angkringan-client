@@ -3,6 +3,7 @@ import CardPie from "@/components/CardPie";
 import CardSale from "@/components/CardSale";
 import CardProfits from "@/components/CardProfits";
 import CardSaleChart from "@/components/CardSaleChart";
+import CardProfitsChart from "@/components/CardProfitsChart";
 
 const DashboardPage = () => {
     return (
@@ -17,7 +18,7 @@ const DashboardPage = () => {
                 <CardSale/>
                 <CardProfits/>
                 <CardSaleChart/>
-                <CardSale/>
+                <CardProfitsChart/>
             </section>
             <section className="grid grid-cols-3 gap-6  max-md:grid-cols-1">
                 <CardPie/>
