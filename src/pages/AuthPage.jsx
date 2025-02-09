@@ -1,8 +1,8 @@
+import FormAuth from "@/components/FormAuth";
+
 const AuthPage = () => {
     return (
-        <>
-            <h1>Login Page</h1>
-        </>
+        <FormAuth/>
     )
 }
 
