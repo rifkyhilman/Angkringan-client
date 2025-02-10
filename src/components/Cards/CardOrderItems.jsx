@@ -1,5 +1,7 @@
 import Kopi from "../../assets/img/products/Kopi_aren.png";
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
     Card,
     CardContent,
@@ -7,6 +9,16 @@ import {
     CardFooter,
     CardTitle,
   } from "@/components/ui/card"
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+ } from "@/components/ui/dialog"
+  
 
 const CardOrderItems = () => {
     return (
@@ -79,7 +91,44 @@ const CardOrderItems = () => {
                         </div>
                     </div>
                     <div className="my-5">
-                        <Button className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"> Order </Button>
+                        <Dialog>
+                            <DialogTrigger className="w-full">
+                                <Button className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"> Order </Button>
+                            </DialogTrigger>
+                            <DialogContent className="p-0">
+                                <DialogHeader className="p-5 border-b-2 border-b-gray-300">
+                                    <DialogTitle>Pembayaran</DialogTitle>
+                                </DialogHeader>
+                                <div className="grid gap-4 p-7">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="name" className="text-right">
+                                        Name
+                                        </Label>
+                                        <Input id="name" className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="username" className="text-right">
+                                        Username
+                                        </Label>
+                                        <Input id="username" className="col-span-3" />
+                                    </div>
+                                </div>
+                                <DialogFooter>
+                                    <div className="flex justify-between w-full p-5 border-t-2 border-t-gray-300">
+                                        <DialogClose asChild>
+                                            <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                                Batal
+                                            </Button>
+                                        </DialogClose>
+                                        <DialogClose asChild>
+                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                                Bayar
+                                            </Button>
+                                        </DialogClose>
+                                    </div>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </CardFooter>
