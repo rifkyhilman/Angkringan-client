@@ -30,7 +30,7 @@ const CategorySlider = () => {
     ]
 
     return (
-        <div className="w-full overflow-x-auto no-scrollbar">
+        <div className="w-full overflow-x-auto no-scrollbar border-b-4 border-b-gray-300">
             <div className="grid grid-flow-col grid-cols-3 gap-5 w-max">
                 {DataKategori.map(data => {
                     return (

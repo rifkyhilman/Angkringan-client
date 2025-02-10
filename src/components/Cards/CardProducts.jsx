@@ -47,14 +47,14 @@ const CardProducts = () => {
         }
     ]
     return (
-        <div className="container grid grid-cols-3 gap-5 p-0 mt-5 max-sm:grid-cols-1">
+        <div className="grid grid-cols-3 gap-5 pb-5 mb-5 mt-5 border-b-4 border-b-gray-300 max-sm:grid-cols-1">
             {dataProducts.map(data => {
                 return (
                     <Card className="flex flex-col items-center" key={data.idProduct}>
                         <CardHeader className="border-b-2 border-b-gray-300">
                             <CardTitle className="text-md capitalize">{data.name}</CardTitle>
                         </CardHeader>
-                        <CardContent className="text-center my-5">
+                        <CardContent className="text-center mt-4">
                             <img src={data.imgPath} className="h-[140px] mb-5" />
                             <h1>Rp. {data.price}</h1>
                         </CardContent>
