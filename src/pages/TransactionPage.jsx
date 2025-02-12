@@ -2,7 +2,7 @@ import CardProducts from "@/components/Cards/CardProducts";
 import CardOrderItems from "../components/Cards/CardOrderItems";
 import CategorySlider from "../components/CategorySlider";
 
-
+ 
 const TransactionPage = () => {
     return (
         <div className="container mx-auto flex max-sm:flex-col">

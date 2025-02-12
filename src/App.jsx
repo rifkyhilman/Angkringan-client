@@ -7,11 +7,12 @@ import DashboardPage from './pages/DashboardPage';
 import TransactionPage from './pages/TransactionPage';
 import UsersPage from './pages/usersPage';
 import LayoutPage from './pages/LayoutPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   const router = createBrowserRouter([
     {
-      element:<LayoutPage/>,
+      element:<ProtectedRoute><LayoutPage/></ProtectedRoute>,
       children:[
         {
           path:'/dashboard',
