@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,10 +11,34 @@ import {
   } from "@/components/ui/card"
 
 const FormAuth = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const handleSubmit = () => {
-        navigate('/dashboard');
-    }
+
+
+    const handleSubmit = async(event) =>  {
+        event.preventDefault();
+
+        try {
+          const response = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({email, password}),
+          });
+    
+          const data = await response.json();
+
+          if (data.accesToken) {
+            localStorage.setItem("Token", data.accesToken); // Simpan token
+            navigate("/dashboard"); // Redirect ke Dashboard
+          } else {
+            alert("Login gagal!");
+          }
+        } catch (err) {
+          console.error("Login Error:", err);
+        }
+      };
+
     return (
         <div className="container mx-auto flex justify-center items-center h-screen">
             <Card className="shadow w-auto">
@@ -23,12 +48,12 @@ const FormAuth = () => {
                 <CardContent>
                     <form className="space-y-4 md:space-y-6 my-7" onSubmit={handleSubmit}>
                         <div>
-                            <Label htmlFor="username"className="block mb-2 text-sm font-medium text-gray-900">Nama Pengguna</Label>
-                            <Input type="username" id="username"  placeholder="Masukan Nama" required=""/>
+                            <Label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</Label>
+                            <Input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}  required=""/>
                         </div>
                         <div>
                             <Label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Kata Sandi</Label>
-                            <Input type="password" id="password" placeholder="••••••••" required=""/>
+                            <Input type="password" placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required=""/>
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-start">

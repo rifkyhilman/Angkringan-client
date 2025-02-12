@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import {
@@ -22,7 +22,7 @@ import {
 
 
 const Navbar = () => {
-
+    const navigate = useNavigate();
     const dataLink = [
         {
             icon: <House/>,
@@ -40,8 +40,6 @@ const Navbar = () => {
             link: "users"
         }
     ];
-
-
     let {pathname} = useLocation();
     let subpage = pathname.split('/')?.[1]
 
@@ -62,6 +60,11 @@ const Navbar = () => {
         document.body.classList.toggle("dark");
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem("Token"); // Hapus token
+        navigate("/"); // Redirect ke login
+      };
+
     return (
         <>        
             <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem]">
@@ -77,12 +80,12 @@ const Navbar = () => {
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <NavigationMenuLink>   
-                                    <Link to={"/"} className="flex items-center mx-3 my-2">
+                                    <Button className="flex items-center mx-3 my-2" onClick={handleLogout}>
                                         <LogOut/>
                                         <span className="ml-2">
                                             Logout
                                         </span>
-                                    </Link>
+                                    </Button>
                                 </NavigationMenuLink>
                             </NavigationMenuContent>
                             </NavigationMenuItem>
