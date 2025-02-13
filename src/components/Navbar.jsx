@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { DataLink } from "../utils/dataDumy.jsx";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -14,9 +15,6 @@ import {
 import { 
     Menu,
     LogOut, 
-    House, 
-    ShoppingCart, 
-    Users,
     Moon,
     Sun,
     TriangleAlert
@@ -27,23 +25,6 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { toast } = useToast()
 
-    const dataLink = [
-        {
-            icon: <House/>,
-            span: "DASHBOARD",
-            link: "dashboard"
-        },
-        {
-            icon: <ShoppingCart/>,
-            span: "TRANSAKSI",
-            link: "transaction"
-        },
-        {
-            icon: <Users/>,
-            span: "PENGGUNA",
-            link: "users"
-        }
-    ];
     let {pathname} = useLocation();
     let subpage = pathname.split('/')?.[1]
 
@@ -122,7 +103,7 @@ const Navbar = () => {
                             <div className="mt-[4rem]">
                                 <NavigationMenu>
                                     <NavigationMenuList className="flex flex-col items-baseline">
-                                        {dataLink.map(data => {
+                                        {DataLink.map(data => {
                                             return (
                                             <NavigationMenuItem key={data.span}>
                                                 <Link to={data.link}>
@@ -144,7 +125,7 @@ const Navbar = () => {
             <div className="sticky top-0 bg-gray-200 text-gray-500 flex justify-between max-sm:hidden">      
                 <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
-                        {dataLink.map(data => {
+                        {DataLink.map(data => {
                             return (
                             <NavigationMenuItem key={data.span}>
                                 <Link to={data.link}>

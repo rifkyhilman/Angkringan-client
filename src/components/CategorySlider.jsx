@@ -1,34 +1,8 @@
 import { Card } from "@/components/ui/card"
-import MakananIcon from "../assets/img/icons/Makanan-icon.png"
-import MinumanIcon from "../assets/img/icons/Minuman-icon.png"
-import SeblakIcon from "../assets/img/icons/Seblak-icon.png"
-import UpcomingIcon from "../assets/img/icons/comingsoon-icon.png"
+import { DataKategori } from "../utils/dataDumy.jsx";
 
 
 const CategorySlider = () => {
-    const DataKategori = [
-        {
-            name: "makanan",
-            pathImg: MakananIcon
-        },
-        {
-            name: "minuman",
-            pathImg: MinumanIcon
-        },
-        {
-            name: "seblak",
-            pathImg: SeblakIcon
-        },
-        {
-            name: "segera hadir",
-            pathImg: UpcomingIcon
-        },
-        {
-            name: "segera hadir",
-            pathImg: UpcomingIcon
-        }
-    ]
-
     return (
         <div className="w-full overflow-x-auto no-scrollbar border-b-4 border-b-gray-300">
             <div className="grid grid-flow-col grid-cols-3 gap-5 w-max">

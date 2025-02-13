@@ -1,3 +1,4 @@
+import { ChartData, ChartConfig } from "@/utils/dataDumy"
 import { Area, AreaChart, CartesianGrid } from "recharts"
 import {
   Card,
@@ -12,22 +13,6 @@ import {
 } from "@/components/ui/chart"
 
 const CardSaleChart = () => {
-    const chartData = [
-        { month: "Senin", desktop: 186 },
-        { month: "Selasa", desktop: 305 },
-        { month: "Rabu", desktop: 237 },
-        { month: "Kamis", desktop: 73 },
-        { month: "Jum'at", desktop: 209 },
-        { month: "Sabtu", desktop: 214 },
-        { month: "Minggu", desktop: 310 },
-      ]
-      const chartConfig = {
-        desktop: {
-          label: "Desktop",
-          color: "hsl(var(--chart-1))",
-        },
-      }
-
     return (
         <Card>
             <CardHeader className="flex-row justify-between">
@@ -37,10 +22,10 @@ const CardSaleChart = () => {
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
                     <p>Rp 13,000,000,00</p>
                 </div>
-                <ChartContainer config={chartConfig} className="-ml-[0.8rem] h-10 w-[18rem]">
+                <ChartContainer config={ChartConfig} className="-ml-[0.8rem] h-10 w-[18rem]">
                     <AreaChart
                     accessibilityLayer
-                    data={chartData}
+                    data={ChartData}
                     margin={{
                         left: 12,
                         right: 12,

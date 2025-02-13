@@ -1,7 +1,4 @@
-import CikuaImg from "../../assets/img/products/Cikua.png";
-import CrabImg from "../../assets/img/products/Crab_stick.png";
-import KopiArenImg from "../../assets/img/products/Kopi_aren.png";
-import DumplingKejuImg from "../../assets/img/products/Dumpling_keju.png";
+import { DataProducts } from "@/utils/dataDumy"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -12,43 +9,9 @@ import {
   } from "@/components/ui/card"
 
 const CardProducts = () => {
-    const dataProducts = [
-        {
-            idProduct: 123,
-            categoryProduct: "Makanan",
-            name: "Cikua",
-            imgPath: CikuaImg,
-            price: 2000,
-            qty: 10
-        },
-        {
-            idProduct: 123,
-            categoryProduct: "Makanan",
-            name: "Crab Stick",
-            imgPath: CrabImg,
-            price: 2000,
-            qty: 15
-        },
-        {
-            idProduct: 123,
-            categoryProduct: "Minuman",
-            name: "Kopi Top Aren",
-            imgPath: KopiArenImg,
-            price: 5000,
-            qty: 40
-        },
-        {
-            idProduct: 123,
-            categoryProduct: "Makanan",
-            name: "Dumpling Keju",
-            imgPath: DumplingKejuImg,
-            price: 6000,
-            qty: 30
-        }
-    ]
     return (
         <div className="grid grid-cols-3 gap-5 pb-5 mb-5 mt-5 border-b-4 border-b-gray-300 max-sm:grid-cols-1">
-            {dataProducts.map(data => {
+            {DataProducts.map(data => {
                 return (
                     <Card className="flex flex-col items-center" key={data.idProduct}>
                         <CardHeader className="border-b-2 border-b-gray-300">
