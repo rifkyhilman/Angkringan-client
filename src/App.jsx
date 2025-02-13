@@ -8,11 +8,15 @@ import TransactionPage from './pages/TransactionPage';
 import UsersPage from './pages/usersPage';
 import LayoutPage from './pages/LayoutPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import RedirectRoute from './components/RedirectRoute';
 
 const App = () => {
   const router = createBrowserRouter([
     {
-      element:<ProtectedRoute><LayoutPage/></ProtectedRoute>,
+      element:
+      <ProtectedRoute>
+        <LayoutPage/>
+      </ProtectedRoute>,
       children:[
         {
           path:'/dashboard',
@@ -28,7 +32,10 @@ const App = () => {
     },       
     {
       path:'/',
-      element:<AuthPage/>
+      element:
+      <RedirectRoute>
+        <AuthPage/>
+      </RedirectRoute>
     },
     {
       path:"*",

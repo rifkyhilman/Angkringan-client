@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -9,17 +10,35 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import { CircleCheck, CircleX} from "lucide-react";
+
 
 const FormAuth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    const { toast } = useToast();
 
     const handleSubmit = async(event) =>  {
         event.preventDefault();
 
         try {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            return (
+              toast({
+                title: (
+                  <div className="flex items-center gap-2">
+                    <CircleX className="w-5 h-5 text-white" /> 
+                    <span>Email Anda Salah !</span>
+                  </div>
+                ),
+                variant: "destructive",
+                duration: 1500,
+              })
+            )
+          };
+
           const response = await fetch("http://localhost:3000/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -29,13 +48,44 @@ const FormAuth = () => {
           const data = await response.json();
 
           if (data.accesToken) {
-            localStorage.setItem("Token", data.accesToken); // Simpan token
-            navigate("/dashboard"); // Redirect ke Dashboard
+            localStorage.setItem("Token", data.accesToken); 
+            toast({
+              title: (
+                <div className="flex items-center gap-2">
+                  <CircleCheck className="w-5 h-5 text-white" /> {/* Ikon */}
+                  <span>Login Berhasil !</span> {/* Teks */}
+                </div>
+              ),
+              className: "bg-green-500 text-white",
+              duration: 1500,
+            });
+            setTimeout(()=> {
+              navigate("/dashboard");
+            }, 1500)
           } else {
-            alert("Login gagal!");
+            toast({
+              title: (
+                <div className="flex items-center gap-2">
+                  <CircleX className="w-5 h-5 text-white" /> 
+                  <span>Password Anda Salah !</span>
+                </div>
+              ),
+              variant: "destructive",
+              duration: 1500,
+            });
           }
         } catch (err) {
-          console.error("Login Error:", err);
+          console.error(err);
+          toast({
+            title: (
+              <div className="flex items-center gap-2">
+                <CircleX className="w-5 h-5 text-white" /> 
+                <span>Terjadi Kesalan Server !</span>
+              </div>
+            ),
+            variant: "destructive",
+            duration: 2000,
+          });
         }
       };
 

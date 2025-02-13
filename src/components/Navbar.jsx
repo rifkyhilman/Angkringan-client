@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import {
     NavigationMenu,
@@ -17,12 +18,15 @@ import {
     ShoppingCart, 
     Users,
     Moon,
-    Sun
+    Sun,
+    TriangleAlert
 } from "lucide-react";
 
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const { toast } = useToast()
+
     const dataLink = [
         {
             icon: <House/>,
@@ -61,8 +65,20 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("Token"); // Hapus token
-        navigate("/"); // Redirect ke login
+        localStorage.removeItem("Token"); 
+        toast({
+            title: (
+            <div className="flex items-center gap-2">
+                <TriangleAlert className="w-5 h-5 text-white" /> 
+                <span>Anda Telah Keluar</span>
+            </div>
+            ),
+            variant: "destructive",
+            duration: 1500,
+          });
+        setTimeout(()=>{
+            navigate("/");
+        },1500)
       };
 
     return (
