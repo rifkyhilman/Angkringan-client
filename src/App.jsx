@@ -5,18 +5,15 @@ import NotFoundPage from './pages/NotFoundPage';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import TransactionPage from './pages/TransactionPage';
-import UsersPage from './pages/usersPage';
+import HistoryPage from './pages/HistoryPage';
 import LayoutPage from './pages/LayoutPage';
-import ProtectedRoute from './components/ProtectedRoute';
-import RedirectRoute from './components/RedirectRoute';
+
 
 const App = () => {
   const router = createBrowserRouter([
     {
       element:
-      <ProtectedRoute>
-        <LayoutPage/>
-      </ProtectedRoute>,
+        <LayoutPage/>,
       children:[
         {
           path:'/dashboard',
@@ -25,17 +22,15 @@ const App = () => {
           path:'/transaction',
           element:<TransactionPage/>
         },   {
-          path:'/users',
-          element:<UsersPage/>
+          path:'/history-transaction',
+          element:<HistoryPage/>
         },
       ]
     },       
     {
       path:'/',
       element:
-      <RedirectRoute>
         <AuthPage/>
-      </RedirectRoute>
     },
     {
       path:"*",

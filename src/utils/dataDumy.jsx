@@ -6,7 +6,7 @@ import CikuaImg from "../assets/img/products/Cikua.png";
 import CrabImg from "../assets/img/products/Crab_stick.png";
 import KopiArenImg from "../assets/img/products/Kopi_aren.png";
 import DumplingKejuImg from "../assets/img/products/Dumpling_keju.png";
-import { House, ShoppingCart, Users } from "lucide-react";
+import { House, ShoppingCart, History } from "lucide-react";
 
 const DataProducts = [
     {
@@ -78,9 +78,9 @@ const DataLink = [
         link: "transaction"
     },
     {
-        icon: <Users/>,
-        span: "PENGGUNA",
-        link: "users"
+        icon: <History/>,
+        span: "HISTORY",
+        link: "history-transaction"
     }
 ];
 
