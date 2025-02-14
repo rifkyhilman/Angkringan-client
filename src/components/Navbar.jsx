@@ -3,22 +3,27 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { DataLink } from "../utils/dataDumy.jsx";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { 
+    Sheet, 
+    SheetTrigger, 
+    SheetContent, 
+    SheetHeader, 
+    SheetTitle,   
+    SheetFooter, 
+    SheetClose } from "@/components/ui/sheet";
 import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuContent,
-} from "@/components/ui/navigation-menu"  
+    NavigationMenuContent } from "@/components/ui/navigation-menu"  
 import { 
     Menu,
     LogOut, 
     Moon,
     Sun,
-    TriangleAlert
-} from "lucide-react";
+    TriangleAlert } from "lucide-react";
 
 
 const Navbar = () => {
@@ -64,8 +69,8 @@ const Navbar = () => {
 
     return (
         <>        
-            <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem]">
-                <div className="font-bold text-2xl max-sm:ml-5">
+            <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem] max-sm:px-[4rem] max-sm:sticky max-sm:top-0 max-sm:z-40">
+                <div className="font-bold text-2xl max-sm:text-lg">
                     <h1>Angkringan</h1>
                 </div>
                 <div className="max-sm:hidden">
@@ -89,7 +94,7 @@ const Navbar = () => {
                         </NavigationMenuList>
                     </NavigationMenu>                
                 </div>
-                <div className="hidden max-sm:mr-5 max-sm:block">
+                <div className="hidden max-sm:block">
                     <Sheet>
                         <SheetTrigger asChild className="bg-black">
                             <Button variant="outline" size="icon">
@@ -102,15 +107,19 @@ const Navbar = () => {
                             </SheetHeader>
                             <div className="mt-[4rem]">
                                 <NavigationMenu>
-                                    <NavigationMenuList className="flex flex-col items-baseline">
+                                    <NavigationMenuList className="felx flex-col gap-5 items-baseline">
                                         {DataLink.map(data => {
                                             return (
                                             <NavigationMenuItem key={data.span}>
                                                 <Link to={data.link}>
-                                                    <NavigationMenuLink className={linkness(data.link)}>
-                                                        <i className="mr-1.5">{data.icon}</i>
-                                                        <span>{data.span}</span>
-                                                    </NavigationMenuLink>
+                                                    <SheetClose>
+                                                        <div className="flex pl-2">
+                                                            <i className="mr-3">{data.icon}</i>
+                                                            <NavigationMenuLink className={linkness(data.link)}>
+                                                                <span>{data.span}</span>
+                                                            </NavigationMenuLink>
+                                                        </div>
+                                                    </SheetClose>
                                                 </Link>
                                             </NavigationMenuItem>
                                             )}
@@ -118,6 +127,17 @@ const Navbar = () => {
                                     </NavigationMenuList>
                                 </NavigationMenu>
                             </div>
+                            <SheetFooter>
+                                <div className="flex justify-between">
+                                    <SheetClose>
+                                        <button onClick={()=> darkModeHandler()} className="mt-[4rem] ml-3">
+                                            { dark && <Sun /> }
+                                            { !dark && <Moon /> }
+                                        </button>
+                                    </SheetClose>
+                                    <Button className="mt-[4rem] text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center" onClick={handleLogout}>Logout</Button>
+                                </div>
+                            </SheetFooter>
                         </SheetContent>
                     </Sheet>
                 </div>
@@ -141,12 +161,8 @@ const Navbar = () => {
                 </NavigationMenu>
                 <NavigationMenu className="mr-[10rem]">
                     <button onClick={()=> darkModeHandler()}>
-                        {   
-                            dark && <Sun />
-                        }
-                        {
-                            !dark && <Moon />
-                        }
+                        { dark && <Sun /> }
+                        { !dark && <Moon /> }
                     </button>
                 </NavigationMenu>
             </div>
