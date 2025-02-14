@@ -22,13 +22,13 @@ const CardSaleChart = () => {
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
                     <p>Rp 13,000,000,00</p>
                 </div>
-                <ChartContainer config={ChartConfig} className="-ml-[0.8rem] h-10 w-[18rem]">
+                <ChartContainer config={ChartConfig} className="h-9 w-full">
                     <AreaChart
                     accessibilityLayer
                     data={ChartData}
                     margin={{
-                        left: 12,
-                        right: 12,
+                        left: -12,
+                        right: -12,
                     }}
                     >
                     <CartesianGrid vertical={false} />
@@ -40,9 +40,9 @@ const CardSaleChart = () => {
                     <Area
                         dataKey="desktop"
                         type="natural"
-                        fill="var(--color-desktop)"
+                        fill="#0000ff"
                         fillOpacity={0.4}
-                        stroke="var(--color-desktop)"
+                        stroke=" #000099"
                     />
                     </AreaChart>
                 </ChartContainer>

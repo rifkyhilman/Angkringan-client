@@ -15,7 +15,7 @@ const DashboardPage = () => {
                     DASHBOARD
                 </h1>
             </section>
-            <section className="mt-8 grid grid-cols-4 gap-4 max-sm:grid-cols-2 max-md:grid-cols-3">
+            <section className="mt-8 grid grid-cols-4 gap-4 max-sm:grid-cols-1 max-md:grid-cols-2">
                 <CardSale/>
                 <CardSaleChart/>
                 <CardProfits/>
