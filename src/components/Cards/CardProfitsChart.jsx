@@ -29,7 +29,7 @@ const CardProfitsChart = () => {
                         cursor={false}
                         content={<ChartTooltipContent hideLabel />}
                         />
-                        <Bar dataKey="desktop" fill="var(--color-desktop)"/>
+                        <Bar dataKey="desktop" fill="#6666ff"/>
                     </BarChart>
                 </ChartContainer>
             </CardContent>
