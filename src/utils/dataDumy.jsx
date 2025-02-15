@@ -11,7 +11,7 @@ import { House, ShoppingCart, History } from "lucide-react";
 const DataProducts = [
     {
         idProduct: 123,
-        categoryProduct: "Makanan",
+        categoryProduct: "makanan",
         name: "Cikua",
         imgPath: CikuaImg,
         price: 2000,
@@ -19,7 +19,7 @@ const DataProducts = [
     },
     {
         idProduct: 123,
-        categoryProduct: "Makanan",
+        categoryProduct: "makanan",
         name: "Crab Stick",
         imgPath: CrabImg,
         price: 2000,
@@ -27,7 +27,7 @@ const DataProducts = [
     },
     {
         idProduct: 123,
-        categoryProduct: "Minuman",
+        categoryProduct: "minuman",
         name: "Kopi Top Aren",
         imgPath: KopiArenImg,
         price: 5000,
