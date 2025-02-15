@@ -10,7 +10,7 @@ import {
 
 const CardProducts = () => {
     return (
-        <div className="grid grid-cols-3 gap-5 pb-5 mb-5 mt-5 border-b-4 border-b-gray-300 max-sm:grid-cols-1">
+        <div className="grid grid-cols-3 gap-5 py-8 mb-5 mt-5 border-y-4 border-y-gray-300  max-lg:grid-cols-2 max-sm:grid-cols-1">
             {DataProducts.map(data => {
                 return (
                     <Card className="flex flex-col items-center" key={data.idProduct}>
