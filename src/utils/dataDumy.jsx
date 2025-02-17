@@ -2,16 +2,36 @@ import MakananIcon from "../assets/img/icons/Makanan-icon.png";
 import MinumanIcon from "../assets/img/icons/Minuman-icon.png";
 import SeblakIcon from "../assets/img/icons/Seblak-icon.png";
 import UpcomingIcon from "../assets/img/icons/comingsoon-icon.png";
+
 import CikuaImg from "../assets/img/products/Cikua.png";
 import CrabImg from "../assets/img/products/Crab_stick.png";
 import KopiArenImg from "../assets/img/products/Kopi_aren.png";
 import DumplingKejuImg from "../assets/img/products/Dumpling_keju.png";
+import EstehImg from "../assets/img/products/esteh_manis.png";
+import ExtrajozzImg from "../assets/img/products/extrajozz.png";
+import KapalapiImg from "../assets/img/products/Kapal_api.png";
+import MangkokImg from "../assets/img/products/mangkok.png";
+import NasikucingImg from "../assets/img/products/nasi_kucing.png";
+import SatebasoImg from "../assets/img/products/sate_baso.png";
+import SateususImg from "../assets/img/products/sate_usus.png";
+
+
+
+
 import { House, ShoppingCart, History } from "lucide-react";
 
 const DataProducts = [
     {
         idProduct: 123,
-        categoryProduct: "makanan",
+        categoryProduct: "seblak",
+        name: "Mangkok",
+        imgPath: MangkokImg,
+        price: 3000,
+        qty: 20
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "seblak",
         name: "Cikua",
         imgPath: CikuaImg,
         price: 2000,
@@ -19,7 +39,7 @@ const DataProducts = [
     },
     {
         idProduct: 123,
-        categoryProduct: "makanan",
+        categoryProduct: "seblak",
         name: "Crab Stick",
         imgPath: CrabImg,
         price: 2000,
@@ -35,12 +55,60 @@ const DataProducts = [
     },
     {
         idProduct: 123,
-        categoryProduct: "Makanan",
+        categoryProduct: "seblak",
         name: "Dumpling Keju",
         imgPath: DumplingKejuImg,
         price: 6000,
         qty: 30
-    }
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "minuman",
+        name: "Es Teh",
+        imgPath: EstehImg,
+        price: 3000,
+        qty: 30
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "minuman",
+        name: "Es Extrajozz",
+        imgPath: ExtrajozzImg,
+        price: 5000,
+        qty: 30
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "minuman",
+        name: "Kopi Hitam",
+        imgPath: KapalapiImg,
+        price: 5000,
+        qty: 30
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "makanan",
+        name: "Nasi Kucing",
+        imgPath: NasikucingImg,
+        price: 6000,
+        qty: 30
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "makanan",
+        name: "Sate Usus Ayam",
+        imgPath: SateususImg,
+        price: 2000,
+        qty: 30
+    },
+    {
+        idProduct: 123,
+        categoryProduct: "makanan",
+        name: "Sate Baso Ayam",
+        imgPath: SatebasoImg,
+        price: 2000,
+        qty: 30
+    },
 ]
 
 const DataKategori = [
