@@ -73,7 +73,7 @@ const Navbar = () => {
                 <div className="font-bold text-2xl max-sm:text-lg">
                     <h1>Angkringan</h1>
                 </div>
-                <div className="max-sm:hidden">
+                <div className="max-sm:hidden z-50">
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
@@ -142,7 +142,7 @@ const Navbar = () => {
                     </Sheet>
                 </div>
             </div>
-            <div className="sticky top-0 z-40  bg-gray-200 text-gray-500 flex justify-between max-sm:hidden">      
+            <div className="sticky top-0 z-40 bg-gray-200 text-gray-500 flex justify-between max-sm:hidden">      
                 <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
                         {DataLink.map(data => {
