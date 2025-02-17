@@ -14,7 +14,7 @@ const CardProducts = ({ selectedCategory}) => {
       : DataProducts.filter((product) => product.categoryProduct === selectedCategory);
 
     return (
-        <div className="grid grid-cols-3 gap-5 py-8 mb-5 mt-5 border-y-4 border-y-gray-300  max-lg:grid-cols-2 max-sm:grid-cols-1">
+        <div className="grid grid-cols-3 gap-5 py-8 mb-5 mt-5 border-y-4 border-y-gray-300 max-h-[50.6rem] overflow-x-auto no-scrollbar max-lg:grid-cols-2 max-sm:grid-cols-1">
             {filteredProducts.map((product) => {
                 return (
                     <Card className="flex flex-col items-center" key={product.idProduct}>

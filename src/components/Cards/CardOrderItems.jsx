@@ -22,7 +22,7 @@ import {
 
 const CardOrderItems = () => {
     return (
-        <Card className="flex flex-col my-5 max-h-[46rem]">
+        <Card className="flex flex-col my-5 max-h-[57rem]">
             <CardHeader className="border-b-2 border-b-gray-200">
                 <CardTitle className="text-md uppercase">item pesanan</CardTitle>
             </CardHeader>
