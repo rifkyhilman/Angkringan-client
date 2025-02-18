@@ -18,9 +18,10 @@ import {
     DialogTitle,
     DialogTrigger,
  } from "@/components/ui/dialog"
+ import { Trash2 } from "lucide-react";
   
 
-const CardOrderItems = ({ orderItems }) => {
+const CardOrderItems = ({ orderItems, onDeleteItem }) => {
     const subTotalPrice = orderItems.reduce((total, item) => total + item.price, 0);
     let pajak
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
@@ -45,13 +46,19 @@ const CardOrderItems = ({ orderItems }) => {
             <CardContent className="flex-1 overflow-y-auto no-scrollbar">
                 { orderItems.map((item) => {
                     return (
-                        <Card className="mt-5 pr-5 pt-5 h-[8.2rem]" key={item.idProduct}>
-                            <div className="grid grid-flow-col grid-rows-3 gap-2">
+                        <Card className="mt-5 p-3" key={item.idProduct}>
+                            <div className="grid grid-flow-col grid-rows-2">
                                 <div className="row-span-3 mx-auto">
-                                    <img src={item.imgPath} className="w-[100px] h-[100px]" alt="Kopi-aren-top"/>
+                                    <img src={item.imgPath} className="h-[70px] w-[70px]" alt={item.name}/>
                                 </div>
-                                <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">{item.name}</div>
-                                <div className="col-span-2 text-red-800">Stok: 5 </div>
+                                <div className="col-span-2 border-b-2 border-b-gray-300 pb-3 text-sm">{item.name}</div>
+                                <div className="col-span-2 ">3 x </div>
+                                <button 
+                                    className="row-span-2 text-red-500"
+                                    onClick={() => onDeleteItem(item.idProduct)}
+                                >
+                                <Trash2 className="w-[50px] h-[50px]"/>
+                                </button>
                             </div>
                         </Card>
                     )}
@@ -140,6 +147,7 @@ CardOrderItems.propTypes = {
         category: PropTypes.string.isRequired,
       })
     ).isRequired,
+    onDeleteItem: PropTypes.func.isRequired,
   };
 
 export default CardOrderItems;

@@ -22,7 +22,7 @@ import { House, ShoppingCart, History } from "lucide-react";
 
 const DataProducts = [
     {
-        idProduct: 123,
+        idProduct: 11241245,
         categoryProduct: "seblak",
         name: "Mangkok",
         imgPath: MangkokImg,
@@ -30,7 +30,7 @@ const DataProducts = [
         qty: 20
     },
     {
-        idProduct: 123,
+        idProduct: 21251245,
         categoryProduct: "seblak",
         name: "Cikua",
         imgPath: CikuaImg,
@@ -38,7 +38,7 @@ const DataProducts = [
         qty: 10
     },
     {
-        idProduct: 123,
+        idProduct: 312412414,
         categoryProduct: "seblak",
         name: "Crab Stick",
         imgPath: CrabImg,
@@ -46,7 +46,7 @@ const DataProducts = [
         qty: 15
     },
     {
-        idProduct: 123,
+        idProduct: 45674125,
         categoryProduct: "minuman",
         name: "Kopi Top Aren",
         imgPath: KopiArenImg,
@@ -54,7 +54,7 @@ const DataProducts = [
         qty: 40
     },
     {
-        idProduct: 123,
+        idProduct: 678571251231,
         categoryProduct: "seblak",
         name: "Dumpling Keju",
         imgPath: DumplingKejuImg,
@@ -62,7 +62,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 98568733523412,
         categoryProduct: "minuman",
         name: "Es Teh",
         imgPath: EstehImg,
@@ -70,7 +70,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 45731245,
         categoryProduct: "minuman",
         name: "Es Extrajozz",
         imgPath: ExtrajozzImg,
@@ -78,7 +78,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 236124521,
         categoryProduct: "minuman",
         name: "Kopi Hitam",
         imgPath: KapalapiImg,
@@ -86,7 +86,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 31255326,
         categoryProduct: "makanan",
         name: "Nasi Kucing",
         imgPath: NasikucingImg,
@@ -94,7 +94,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 235612435,
         categoryProduct: "makanan",
         name: "Sate Usus Ayam",
         imgPath: SateususImg,
@@ -102,7 +102,7 @@ const DataProducts = [
         qty: 30
     },
     {
-        idProduct: 123,
+        idProduct: 153436,
         categoryProduct: "makanan",
         name: "Sate Baso Ayam",
         imgPath: SatebasoImg,
