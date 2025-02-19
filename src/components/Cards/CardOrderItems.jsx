@@ -94,7 +94,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                 </>
                             }
                             <p>
-                                Total 
+                                Total ({orderItems.length} Items)
                             </p>
                         </div>
                         <div className="text-end">   
@@ -116,7 +116,9 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                     <div className="my-5">
                         <Dialog>
                             <DialogTrigger className="w-full">
-                                <Button className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"> Order </Button>
+                                <Button className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center"> 
+                                    Order 
+                                </Button>
                             </DialogTrigger>
                             <DialogContent className="p-0">
                                 <DialogHeader className="p-5 border-b-2 border-b-gray-300">
