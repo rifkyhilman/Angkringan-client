@@ -52,11 +52,11 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                     return (
                         <Card className="mt-5 p-3" key={item.idProduct}>
                             <div className="grid grid-flow-col grid-rows-2">
-                                <div className="row-span-3 content-center max-sm:hidden">
+                                <div className="row-span-3 content-center max-lg:hidden">
                                     <img src={item.imgPath} className="h-[50px] w-[50px]" alt={item.name}/>
                                 </div>
                                 <div className="row-span-3 text-xs">
-                                    <div className="border-b-2 border-b-gray-300 py-2 -ml-4 max-w-[4.5rem]">
+                                    <div className="border-b-2 border-b-gray-300 py-2 -ml-4 max-w-[4.5rem] max-lg:ml-0">
                                         <p className="font-bold pb-1">
                                             {item.name}
                                         </p>
@@ -64,7 +64,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                             {formattedPrice}
                                         </p>
                                     </div>
-                                    <p className="py-2 -ml-4">
+                                    <p className="py-2 -ml-4 max-lg:ml-0">
                                         jumlah : 1 x
                                     </p>
                                 </div>
