@@ -18,7 +18,6 @@ import {
     DialogTitle,
     DialogTrigger,
  } from "@/components/ui/dialog"
- import { Trash2 } from "lucide-react";
   
 
 const CardOrderItems = ({ orderItems, onDeleteItem }) => {
@@ -45,19 +44,35 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto no-scrollbar">
                 { orderItems.map((item) => {
+                    const formattedPrice= item.price.toLocaleString("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        minimumFractionDigits: 2,
+                    })
                     return (
                         <Card className="mt-5 p-3" key={item.idProduct}>
                             <div className="grid grid-flow-col grid-rows-2">
-                                <div className="row-span-3 mx-auto">
-                                    <img src={item.imgPath} className="h-[70px] w-[70px]" alt={item.name}/>
+                                <div className="row-span-3 content-center max-sm:hidden">
+                                    <img src={item.imgPath} className="h-[50px] w-[50px]" alt={item.name}/>
                                 </div>
-                                <div className="col-span-2 border-b-2 border-b-gray-300 pb-3 text-sm">{item.name}</div>
-                                <div className="col-span-2 ">3 x </div>
+                                <div className="row-span-3 text-xs">
+                                    <div className="border-b-2 border-b-gray-300 py-2 -ml-4 max-w-[4.5rem]">
+                                        <p className="font-bold pb-1">
+                                            {item.name}
+                                        </p>
+                                        <p className="text-blue-500">
+                                            {formattedPrice}
+                                        </p>
+                                    </div>
+                                    <p className="py-2 -ml-4">
+                                        jumlah : 1 x
+                                    </p>
+                                </div>
                                 <button 
-                                    className="row-span-2 text-red-500"
+                                    className="row-span-3 text-white bg-red-500 text-xs ml-5 -mr-3 -my-3 rounded-r-lg"
                                     onClick={() => onDeleteItem(item.idProduct)}
                                 >
-                                <Trash2 className="w-[50px] h-[50px]"/>
+                                    Batal
                                 </button>
                             </div>
                         </Card>
@@ -68,26 +83,30 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                 <div className="w-full">
                     <div className="mt-5 px-3 text-sm flex justify-between">
                         <div>
-                            <p>
-                                SubTotal 
-                            </p>
                             {pajak !== 0 && 
-                                <p>
-                                    PPN 12%
-                                </p>
+                                <>
+                                    <p>
+                                        SubTotal 
+                                    </p>
+                                    <p>
+                                        PPN 12%
+                                    </p>
+                                </>
                             }
                             <p>
                                 Total 
                             </p>
                         </div>
-                        <div className="text-end">
-                            <p>
-                                {formattedPriceSub}
-                            </p>
+                        <div className="text-end">   
                             {pajak !== 0 && 
-                                <p className="text-green-500">
-                                    + Rp. {pajak}
-                                </p>
+                                <>
+                                    <p>
+                                        {formattedPriceSub}
+                                    </p>
+                                    <p className="text-green-500">
+                                        + Rp. {pajak}
+                                    </p>
+                                </>
                             }
                             <p>
                                 {formattedPriceTotal}
