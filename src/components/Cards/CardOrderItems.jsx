@@ -115,8 +115,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                     </div>
                     <div className="my-5">
                         <Dialog>
-                            <DialogTrigger className="w-full">
-                                <Button className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center"> 
+                            <DialogTrigger className="w-full" disabled={orderItems.length === 0}>
+                                <Button className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center" disabled={orderItems.length === 0}> 
                                     Pesan
                                 </Button>
                             </DialogTrigger>
