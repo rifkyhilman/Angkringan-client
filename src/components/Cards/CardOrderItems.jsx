@@ -48,7 +48,9 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                         style: "currency",
                         currency: "IDR",
                         minimumFractionDigits: 2,
-                    })
+                    });
+
+                    console.log(item)
                     return (
                         <Card className="mt-5 p-3" key={item.idProduct}>
                             <div className="grid grid-flow-col grid-rows-2">
@@ -65,7 +67,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                         </p>
                                     </div>
                                     <p className="py-2 -ml-4 max-lg:ml-0">
-                                        jumlah : 1 x
+                                        jumlah : {item.quantity} x
                                     </p>
                                 </div>
                                 <button 

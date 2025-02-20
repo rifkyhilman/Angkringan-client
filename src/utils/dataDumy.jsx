@@ -26,88 +26,77 @@ const DataProducts = [
         categoryProduct: "seblak",
         name: "Mangkok",
         imgPath: MangkokImg,
-        price: 3000,
-        qty: 20
+        price: 3000
     },
     {
         idProduct: 21251245,
         categoryProduct: "seblak",
         name: "Cikua",
         imgPath: CikuaImg,
-        price: 2000,
-        qty: 10
+        price: 2000
     },
     {
         idProduct: 312412414,
         categoryProduct: "seblak",
         name: "Crab Stick",
         imgPath: CrabImg,
-        price: 2000,
-        qty: 15
+        price: 2000
     },
     {
         idProduct: 45674125,
         categoryProduct: "minuman",
         name: "Kopi Top Aren",
         imgPath: KopiArenImg,
-        price: 5000,
-        qty: 40
+        price: 5000
     },
     {
         idProduct: 678571251231,
         categoryProduct: "seblak",
         name: "Dumpling Keju",
         imgPath: DumplingKejuImg,
-        price: 6000,
-        qty: 30
+        price: 2000
     },
     {
         idProduct: 98568733523412,
         categoryProduct: "minuman",
         name: "Es Teh",
         imgPath: EstehImg,
-        price: 3000,
-        qty: 30
+        price: 3000
     },
     {
         idProduct: 45731245,
         categoryProduct: "minuman",
         name: "Es Extrajozz",
         imgPath: ExtrajozzImg,
-        price: 5000,
-        qty: 30
+        price: 5000
     },
     {
         idProduct: 236124521,
         categoryProduct: "minuman",
         name: "Kopi Hitam",
         imgPath: KapalapiImg,
-        price: 5000,
-        qty: 30
+        price: 5000
     },
     {
         idProduct: 31255326,
         categoryProduct: "makanan",
         name: "Nasi Kucing",
         imgPath: NasikucingImg,
-        price: 6000,
-        qty: 30
+        price: 6000
     },
     {
         idProduct: 235612435,
         categoryProduct: "makanan",
         name: "Sate Usus Ayam",
         imgPath: SateususImg,
-        price: 2000,
-        qty: 30
+        price: 2000
     },
     {
         idProduct: 153436,
         categoryProduct: "makanan",
         name: "Sate Baso Ayam",
         imgPath: SatebasoImg,
-        price: 2000,
-        qty: 30
+        price: 2000
     },
 ]
 
