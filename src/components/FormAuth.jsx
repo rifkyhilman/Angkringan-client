@@ -9,34 +9,36 @@ import {
     CardContent,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
-import { CircleCheck, CircleX} from "lucide-react";
+  } from "@/components/ui/card";
+import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 
 
 const FormAuth = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
     const { toast } = useToast();
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async(event) =>  {
         event.preventDefault();
-
+        setLoading(true);
+        
         try {
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(email)) {
-            return (
-              toast({
-                title: (
-                  <div className="flex items-center gap-2">
-                    <CircleX className="w-5 h-5 text-white" /> 
-                    <span>Email Anda Salah !</span>
-                  </div>
-                ),
-                variant: "destructive",
-                duration: 1500,
-              })
-            )
+            toast({
+              title: (
+                <div className="flex items-center gap-2">
+                  <CircleX className="w-5 h-5 text-white" /> 
+                  <span>Email Anda Salah !</span>
+                </div>
+              ),
+              variant: "destructive",
+              duration: 1500,
+              setLoading: false
+            });
+            setLoading(false);
           };
 
           const response = await fetch("http://localhost:3000/api/auth/login", {
@@ -60,6 +62,7 @@ const FormAuth = () => {
               duration: 1500,
             });
             setTimeout(()=> {
+              setLoading(false);
               navigate("/dashboard");
             }, 1500)
           } else {
@@ -73,6 +76,7 @@ const FormAuth = () => {
               variant: "destructive",
               duration: 1500,
             });
+            setLoading(false);
           }
         } catch (err) {
           console.error(err);
@@ -86,6 +90,7 @@ const FormAuth = () => {
             variant: "destructive",
             duration: 2000,
           });
+          setLoading(false);
         }
       };
 
@@ -116,7 +121,10 @@ const FormAuth = () => {
                             </div>
                             <a href="#" className="text-sm ml-5 text-primary-600 hover:underline dark:text-primary-500">Lupa password?</a>
                         </div>
-                        <Button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center">Masuk</Button>
+                        <Button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center"  disabled={loading === true}> 
+                          {loading && <Loader2 className="animate-spin" />}
+                          Masuk
+                        </Button>
                     </form>
                 </CardContent>
             </Card>

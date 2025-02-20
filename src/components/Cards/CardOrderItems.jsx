@@ -49,8 +49,6 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                         currency: "IDR",
                         minimumFractionDigits: 2,
                     });
-
-                    console.log(item)
                     return (
                         <Card className="mt-5 p-3" key={item.idProduct}>
                             <div className="grid grid-flow-col grid-rows-2">
