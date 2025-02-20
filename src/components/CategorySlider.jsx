@@ -12,7 +12,7 @@ const CategorySlider = ({ selectedCategory, setSelectedCategory }) => {
                 <Button className={`mt-[1.4rem] p-0 h-[5rem] bg-white ${selectedCategory === "All" && "drop-shadow-lg"}`} onClick={() => setSelectedCategory("All")}>
                     <div className="h-full">
                         <div className="px-5 pt-3">
-                            <img src={AllIcon} className="w-[90px] h-[55px]" alt={AllIcon}/>
+                            <img src={AllIcon} className="w-[90px] h-[55px] lg:w-[70px]" alt={AllIcon}/>
                         </div>
                     </div>
                 </Button>
