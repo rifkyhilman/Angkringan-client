@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -20,12 +21,27 @@ import {
  } from "@/components/ui/dialog"
   
 
-const CardOrderItems = ({ orderItems, onDeleteItem }) => {
+const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const subTotalPrice = orderItems.reduce((total, item) => total + item.price, 0);
-    let pajak
+    const [payment, setPayment] = useState(null);
+
+    let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
     const totalPrice = subTotalPrice + pajak;
     
+    const handlePaymentChange = (event) => {
+        setPayment(event.target.value);
+    };
+
+    const handleClickPayment = () => {
+        setPayment(null);
+        onPayment();
+    }
+
+    let changePayment;
+    payment === null ? changePayment = 0 : changePayment = payment - totalPrice;
+    
+
     const formattedPriceSub = subTotalPrice.toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
@@ -36,6 +52,13 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
         currency: "IDR",
         minimumFractionDigits: 2,
       });
+    const formattedChangePayment = changePayment.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 2,
+    });
+
+    
 
     return (
         <Card className="flex flex-col my-5 max-h-[57rem]">
@@ -131,7 +154,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                             <p>{formattedPriceTotal}</p>
                                         </div>
                                         <div className="text-end text-green-600 py-5 px-3">
-                                            <p>Kembalian : Rp. 2000.00</p>
+                                            <p>Kembalian : {formattedChangePayment}</p>
                                         </div>
                                     </div>
                                     <div className="flex justify-between mb-3 max-sm:flex-col">
@@ -152,7 +175,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                         <Label htmlFor="cash">
                                         Jumlah Uang Tunai
                                         </Label>
-                                        <Input id="cash" type="number" placeholder="Rp.000,00" />
+                                        <Input id="cash" type="number" placeholder="Rp.000,00" onChange={handlePaymentChange} />
                                     </div>
                                 </div>
                                 <DialogFooter>
@@ -163,7 +186,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                                             </Button>
                                         </DialogClose>
                                         <DialogClose asChild>
-                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                            onClick={handleClickPayment} disabled={payment === null}>
                                                 Bayar
                                             </Button>
                                         </DialogClose>
@@ -186,6 +210,7 @@ CardOrderItems.propTypes = {
       })
     ).isRequired,
     onDeleteItem: PropTypes.func.isRequired,
+    onPayment: PropTypes.func.isRequired,
   };
 
 export default CardOrderItems;
