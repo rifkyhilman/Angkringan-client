@@ -122,20 +122,37 @@ const CardOrderItems = ({ orderItems, onDeleteItem }) => {
                             </DialogTrigger>
                             <DialogContent className="p-0">
                                 <DialogHeader className="p-5 border-b-2 border-b-gray-300">
-                                    <DialogTitle>Pembayaran</DialogTitle>
+                                    <DialogTitle>Pembayaran Tunai</DialogTitle>
                                 </DialogHeader>
-                                <div className="grid gap-4 p-7">
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="name" className="text-right">
-                                        Name
-                                        </Label>
-                                        <Input id="name" className="col-span-3" />
+                                <div className="px-10 py-5">
+                                    <div className="bg-gray-200 mb-7 p-4 rounded-md dark:text-black">
+                                        <div className="flex justify-between border-b-2 border-b-gray-300 py-5 px-3">
+                                            <p>Total : </p>
+                                            <p>{formattedPriceTotal}</p>
+                                        </div>
+                                        <div className="text-end text-green-600 py-5 px-3">
+                                            <p>Kembalian : Rp. 2000.00</p>
+                                        </div>
                                     </div>
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="username" className="text-right">
-                                        Username
+                                    <div className="flex justify-between mb-3 max-sm:flex-col">
+                                        <div className="max-sm:mb-3">
+                                            <Label htmlFor="name">
+                                            Nama Pembeli
+                                            </Label>
+                                            <Input id="name" type="text" placeholder="Nama Pembeli"/>
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="discount">
+                                            Potongan Harga (Rp.)
+                                            </Label>
+                                            <Input id="discount" type="number" placeholder="Rp. 000,00"/>
+                                        </div>
+                                    </div>
+                                    <div className="mb-5">
+                                        <Label htmlFor="cash">
+                                        Jumlah Uang Tunai
                                         </Label>
-                                        <Input id="username" className="col-span-3" />
+                                        <Input id="cash" type="number" placeholder="Rp.000,00" />
                                     </div>
                                 </div>
                                 <DialogFooter>
