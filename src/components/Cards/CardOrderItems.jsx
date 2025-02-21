@@ -44,8 +44,13 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
         onPayment();
     }
 
+    const handleCancelPayment = () => {
+        setCustomer("");
+        setPayment(null);
+    }
+
     let changePayment;
-    payment === null ? changePayment = 0 : changePayment = payment - totalPrice;
+    payment <= totalPrice ? changePayment = 0 : changePayment = payment - totalPrice;
     
     const formattedPriceSub = subTotalPrice.toLocaleString("id-ID", {
         style: "currency",
@@ -170,10 +175,10 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                             <Input id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
                                         </div>
                                         <div>
-                                            <Label htmlFor="discount">
+                                            <Label htmlFor="discount" className="text-gray-400">
                                             Potongan Harga (Rp.)
                                             </Label>
-                                            <Input id="discount" type="number" placeholder="Rp. 000,00"/>
+                                            <Input id="discount" type="number" placeholder="Rp. 000,00" disabled />
                                         </div>
                                     </div>
                                     <div className="mb-5">
@@ -186,7 +191,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 <DialogFooter>
                                     <div className="flex justify-between w-full p-5 border-t-2 border-t-gray-300">
                                         <DialogClose asChild>
-                                            <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                            <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                            onClick={handleCancelPayment}>
                                                 Batal
                                             </Button>
                                         </DialogClose>
