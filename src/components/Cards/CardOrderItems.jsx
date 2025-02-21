@@ -23,17 +23,23 @@ import {
 
 const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const subTotalPrice = orderItems.reduce((total, item) => total + item.price, 0);
+    const [customer, setCustomer] = useState("");
     const [payment, setPayment] = useState(null);
 
     let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
     const totalPrice = subTotalPrice + pajak;
     
+    const handleCustomerName = (event) => {
+        setCustomer(event.target.value);
+    }
+
     const handlePaymentChange = (event) => {
         setPayment(event.target.value);
     };
 
     const handleClickPayment = () => {
+        setCustomer("");
         setPayment(null);
         onPayment();
     }
@@ -41,7 +47,6 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     let changePayment;
     payment === null ? changePayment = 0 : changePayment = payment - totalPrice;
     
-
     const formattedPriceSub = subTotalPrice.toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
@@ -162,7 +167,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                             <Label htmlFor="name">
                                             Nama Pembeli
                                             </Label>
-                                            <Input id="name" type="text" placeholder="Nama Pembeli"/>
+                                            <Input id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
                                         </div>
                                         <div>
                                             <Label htmlFor="discount">
@@ -187,7 +192,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                         </DialogClose>
                                         <DialogClose asChild>
                                             <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                            onClick={handleClickPayment} disabled={payment === null}>
+                                            onClick={handleClickPayment} disabled={customer === "" || changePayment <= 0}>
                                                 Bayar
                                             </Button>
                                         </DialogClose>
