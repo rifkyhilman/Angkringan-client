@@ -1,3 +1,4 @@
+import CardHistory from "@/components/Cards/CardHistory";
 import FilterHistory from "@/components/FilterHistory";
 
 const UsersPage = () => {
@@ -11,6 +12,7 @@ const UsersPage = () => {
             </section>
             <section>
                 <FilterHistory/>
+                <CardHistory/>
             </section>
         </div>
     )
