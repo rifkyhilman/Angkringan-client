@@ -13,7 +13,7 @@ const FilterHistory = () => {
     const [endDate, setEndDate] = useState(null);
   
     return (
-       <div className="flex bg-white p-5 mt-5">
+       <div className="flex bg-white p-5 mt-5 max-sm:flex-col">
             <Popover>
                 <div className="w-1/2 mr-5">
                     <PopoverTrigger asChild >
