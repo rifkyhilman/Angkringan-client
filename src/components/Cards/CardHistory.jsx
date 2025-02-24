@@ -26,10 +26,10 @@ const CardHistory = () => {
             <Card className="mt-5" key={sale.idHistory}>
                 <div className="flex justify-between max-sm:flex-col">
                     <CardHeader>
-                        <CardTitle>
+                        <CardTitle className="max-sm:text-center">
                             {sale.customerName}
                         </CardTitle>
-                        <div className="text-sm">
+                        <div className="text-sm max-sm:text-center">
                             <p>
                                 {sale.dateSale}
                             </p>
@@ -45,7 +45,7 @@ const CardHistory = () => {
                     </CardContent>
                     <CardFooter>
                         <Dialog>
-                            <DialogTrigger>
+                            <DialogTrigger className="max-sm:w-full">
                                 <Button className="w-full text-green-600 border-2 border-green-600 hover:text-white hover:bg-green-700 focus:ring-green-300 focus:outline-none text-sm px-5 py-2.5 mt-6 text-center"> 
                                     <FileSearch/>
                                     Detail

@@ -15,10 +15,10 @@ const FilterHistory = () => {
     return (
        <div className="flex bg-white p-5 mt-5 max-sm:flex-col">
             <Popover>
-                <div className="w-1/2 mr-5">
+                <div className="w-1/2 mr-5 max-sm:w-full">
                     <PopoverTrigger asChild >
-                        <div>
-                            <Label>Tanggal Mulai</Label>
+                        <div className="max-sm:mb-5">
+                            <Label>Tanggal Awal</Label>
                             <Button className="flex justify-between mt-2 w-full border-2 border-gray-200 text-gray-700">
                                 {startDate ? format(startDate, "dd/MM/yyyy") : "Hari/Bulan/Tahun"}
                                 <CalendarIcon className="w-4 h-4 text-black" />
@@ -31,9 +31,9 @@ const FilterHistory = () => {
                 </div>
             </Popover>
             <Popover>
-                <div className="w-1/2">
+                <div className="w-1/2 max-sm:w-full">
                     <PopoverTrigger asChild>
-                        <div>
+                        <div className="max-sm:mb-5">
                             <Label>Tanggal Akhir</Label>
                             <Button className="flex justify-between mt-2 w-full border-2 border-gray-200 text-gray-700">
                                 {endDate ? format(endDate, "dd/MM/yyyy") : "Hari/Bulan/Tahun"}
@@ -46,8 +46,8 @@ const FilterHistory = () => {
                     </PopoverContent>
                 </div>
             </Popover>
-            <div className="flex items-end ml-5">
-                <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-10 py-2.5 text-center">
+            <div className="flex items-end ml-5 max-sm:ml-0 max-sm:mt-5">
+                <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-10 py-2.5 text-center max-sm:w-full">
                     <Search/>
                     Cari
                 </Button>
