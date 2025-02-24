@@ -30,6 +30,10 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { toast } = useToast()
 
+    const token = localStorage.getItem("Token");
+    const payload = JSON.parse(atob(token.split(".")[1])); // Decode token payload
+
+
     let {pathname} = useLocation();
     let subpage = pathname.split('/')?.[1]
 
@@ -51,18 +55,18 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("Token"); 
         toast({
             title: (
             <div className="flex items-center gap-2">
                 <TriangleAlert className="w-5 h-5 text-white" /> 
-                <span>Anda Telah Keluar</span>
+                <span>Anda Berhasil Keluar</span>
             </div>
             ),
             variant: "destructive",
             duration: 1500,
           });
         setTimeout(()=>{
+            localStorage.removeItem("Token"); 
             navigate("/");
         },1500)
       };
@@ -78,7 +82,7 @@ const Navbar = () => {
                         <NavigationMenuList>
                             <NavigationMenuItem>
                             <NavigationMenuTrigger className="bg-transparent hover:bg-transparent hover:text-white text-base">
-                                Admin
+                                {payload.username}
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <NavigationMenuLink>   

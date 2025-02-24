@@ -54,8 +54,8 @@ const FormAuth = () => {
             toast({
               title: (
                 <div className="flex items-center gap-2">
-                  <CircleCheck className="w-5 h-5 text-white" /> {/* Ikon */}
-                  <span>Login Berhasil !</span> {/* Teks */}
+                  <CircleCheck className="w-5 h-5 text-white" /> 
+                  <span>Login Berhasil !</span> 
                 </div>
               ),
               className: "bg-green-500 text-white",
