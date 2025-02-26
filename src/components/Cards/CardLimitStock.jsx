@@ -1,4 +1,4 @@
-import Kopi from "@/assets/img/products/Kopi_aren.png";
+import SateAyam from "@/assets/img/products/sate_usus.png";
 import {
     Card,
     CardContent,
@@ -16,36 +16,36 @@ const CardLimitStock = () => {
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
                     <div className="grid grid-flow-col grid-rows-3 gap-2">
                         <div className="row-span-3 mx-auto">
-                            <img src={Kopi} className="w-[100px] h-[100px]" alt="Kopi-aren-top"/>
+                            <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
-                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">Kopi Gula Aren</div>
+                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
                         <div className="col-span-2 text-red-800">Stok: 5 </div>
                     </div>
                 </Card>
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
                     <div className="grid grid-flow-col grid-rows-3 gap-2">
                         <div className="row-span-3 mx-auto">
-                            <img src={Kopi} className="w-[100px] h-[100px]" alt="Kopi-aren-top"/>
+                            <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
-                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">Kopi Gula Aren</div>
+                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
                         <div className="col-span-2 text-red-800">Stok: 5 </div>
                     </div>
                 </Card>
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
                     <div className="grid grid-flow-col grid-rows-3 gap-2">
                         <div className="row-span-3 mx-auto">
-                            <img src={Kopi} className="w-[100px] h-[100px]" alt="Kopi-aren-top"/>
+                            <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
-                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">Kopi Gula Aren</div>
+                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
                         <div className="col-span-2 text-red-800">Stok: 5 </div>
                     </div>
                 </Card>
                 <Card className="mt-5 mb-5 pr-5 pt-5 h-[8.2rem]">
                     <div className="grid grid-flow-col grid-rows-3 gap-2">
                         <div className="row-span-3 mx-auto">
-                            <img src={Kopi} className="w-[100px] h-[100px]" alt="Kopi-aren-top"/>
+                            <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
-                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">Kopi Gula Aren</div>
+                        <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
                         <div className="col-span-2 text-red-800">Stok: 5 </div>
                     </div>
                 </Card>
