@@ -1,4 +1,4 @@
-import Kopi from "../../assets/img/products/Kopi_aren.png";
+import Kopi from "@/assets/img/products/Kopi_aren.png";
 import {
     Card,
     CardContent,

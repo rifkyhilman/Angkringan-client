@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CardProducts from "@/components/Cards/CardProducts";
-import CardOrderItems from "../components/Cards/CardOrderItems";
-import CategorySlider from "../components/CategorySlider";
+import CardOrderItems from "@/components/Cards/CardOrderItems";
+import CategorySlider from "@/components/CategorySlider";
 
  
 const TransactionPage = () => {

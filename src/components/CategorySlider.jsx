@@ -1,7 +1,7 @@
 // import { Card } from "@/components/ui/card"
-import AllIcon from "../assets/img/products/all.png";
-import { DataKategori } from "../utils/dataDumy.jsx";
-import { Button } from "./ui/button.jsx";
+import AllIcon from "@/assets/img/products/all.png";
+import { DataKategori } from "@/utils/dataDumy.jsx";
+import { Button } from "@/components/ui/button.jsx";
 import PropTypes from "prop-types";
 
 
