@@ -1,15 +1,15 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 // import Pagination
-import NotFoundPage from './pages/NotFoundPage';
-import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import TransactionPage from './pages/TransactionPage';
-import HistoryPage from './pages/HistoryPage';
-import LayoutPage from './pages/LayoutPage';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import AuthPage from './pages/AuthPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
+import TransactionPage from './pages/TransactionPage.jsx';
+import HistoryPage from './pages/HistoryPage.jsx';
+import LayoutPage from './pages/LayoutPage.jsx';
 
-import ProtectedRoute from './components/ProtectedRoute';
-import RedirectRoute from './components/RedirectRoute';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import RedirectRoute from './components/RedirectRoute.jsx';
 
 const App = () => {
   const router = createBrowserRouter([
