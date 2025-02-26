@@ -5,7 +5,7 @@ import UpcomingIcon from "@/assets/img/icons/comingsoon-icon.png";
 
 import CikuaImg from "@/assets/img/products/Cikua.png";
 import CrabImg from "@/assets/img/products/Crab_stick.png";
-import KopiArenImg from "@/assets/img/products/Kopi_aren.png";
+import KopiArenImg from "@/assets/img/products/kopi_aren.png";
 import DumplingKejuImg from "@/assets/img/products/Dumpling_keju.png";
 import EstehImg from "@/assets/img/products/esteh_manis.png";
 import ExtrajozzImg from "@/assets/img/products/extrajozz.png";
