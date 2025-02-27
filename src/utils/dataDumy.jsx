@@ -5,11 +5,11 @@ import UpcomingIcon from "@/assets/img/icons/comingsoon-icon.png";
 
 import CikuaImg from "@/assets/img/products/Cikua.png";
 import CrabImg from "@/assets/img/products/Crab_stick.png";
-import KopiArenImg from "@/assets/img/products/Kopi_aren.png";
+import KopiArenImg from "@/assets/img/products/kopi_aren.png";
 import DumplingKejuImg from "@/assets/img/products/Dumpling_keju.png";
 import EstehImg from "@/assets/img/products/esteh_manis.png";
 import ExtrajozzImg from "@/assets/img/products/extrajozz.png";
-import KapalapiImg from "@/assets/img/products/Kapal_api.png";
+import KapalapiImg from "@/assets/img/products/kapal_api.png";
 import MangkokImg from "@/assets/img/products/mangkok.png";
 import NasikucingImg from "@/assets/img/products/nasi_kucing.png";
 import SatebasoImg from "@/assets/img/products/sate_baso.png";
