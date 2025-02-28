@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast"
 import CardProducts from "@/components/Cards/CardProducts";
 import CardOrderItems from "@/components/Cards/CardOrderItems";
 import CategorySlider from "@/components/CategorySlider";
@@ -7,6 +8,7 @@ import CategorySlider from "@/components/CategorySlider";
 const TransactionPage = () => {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [orderItems, setOrderItems] = useState([]);
+    const { toast } = useToast();
 
     const handleAddToOrder = (product) => {
         setOrderItems((prevItems) => {
@@ -21,11 +23,19 @@ const TransactionPage = () => {
                 return [...prevItems, { ...product, quantity: 1 }];
             }
         });    
+        toast({
+            description: `(+1) ${product.name} Masuk Kedalam Keranjang`,
+        });
+
     };
 
-    const handleDeleteItem = (idProduct) => {
+    const handleDeleteItem = (idProduct, nameProduct) => {
         const updatedItems = orderItems.filter(item => item.idProduct !== idProduct);
         setOrderItems(updatedItems);
+        toast({
+            variant: "destructive",
+            description: `${nameProduct} Dihapus dari Keranjang`,
+        });
     };
 
     const handlePaymentSucces = () => {

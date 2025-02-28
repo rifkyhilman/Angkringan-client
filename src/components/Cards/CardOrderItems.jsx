@@ -103,7 +103,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 </div>
                                 <button 
                                     className="row-span-3 text-white bg-red-500 text-xs ml-5 -mr-3 -my-3 rounded-r-lg"
-                                    onClick={() => onDeleteItem(item.idProduct)}
+                                    onClick={() => onDeleteItem(item.idProduct, item.name)}
                                 >
                                     Batal
                                 </button>
