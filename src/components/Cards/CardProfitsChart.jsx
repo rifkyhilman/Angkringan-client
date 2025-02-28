@@ -22,7 +22,7 @@ const CardProfitsChart = () => {
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
                     <p>Rp 13,000,000,00</p>
                 </div>
-                <ChartContainer config={ChartConfig} className=" h-10 w-full -mb-[10px]">
+                <ChartContainer config={ChartConfig} className=" h-10 w-full -mb-[4px]">
                     <BarChart accessibilityLayer data={ChartData}>
                         <CartesianGrid vertical={false} />
                         <ChartTooltip

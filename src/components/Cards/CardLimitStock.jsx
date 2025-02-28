@@ -14,8 +14,8 @@ const CardLimitStock = () => {
             </CardHeader>
             <CardContent className="flex-1 overflow-y-auto no-scrollbar">
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
-                    <div className="grid grid-flow-col grid-rows-3 gap-2">
-                        <div className="row-span-3 mx-auto">
+                    <div className="grid grid-flow-col grid-rows-3 gap-2 max-sm:ml-5">
+                        <div className="row-span-3 mx-auto max-sm:hidden">
                             <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
                         <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
@@ -23,8 +23,8 @@ const CardLimitStock = () => {
                     </div>
                 </Card>
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
-                    <div className="grid grid-flow-col grid-rows-3 gap-2">
-                        <div className="row-span-3 mx-auto">
+                    <div className="grid grid-flow-col grid-rows-3 gap-2 max-sm:ml-5">
+                        <div className="row-span-3 mx-auto max-sm:hidden">
                             <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
                         <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
@@ -32,8 +32,8 @@ const CardLimitStock = () => {
                     </div>
                 </Card>
                 <Card className="mt-5 pr-5 pt-5 h-[8.2rem]">
-                    <div className="grid grid-flow-col grid-rows-3 gap-2">
-                        <div className="row-span-3 mx-auto">
+                    <div className="grid grid-flow-col grid-rows-3 gap-2 max-sm:ml-5">
+                        <div className="row-span-3 mx-auto max-sm:hidden">
                             <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
                         <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>
@@ -41,8 +41,8 @@ const CardLimitStock = () => {
                     </div>
                 </Card>
                 <Card className="mt-5 mb-5 pr-5 pt-5 h-[8.2rem]">
-                    <div className="grid grid-flow-col grid-rows-3 gap-2">
-                        <div className="row-span-3 mx-auto">
+                    <div className="grid grid-flow-col grid-rows-3 gap-2 max-sm:ml-5">
+                        <div className="row-span-3 mx-auto max-sm:hidden">
                             <img src={SateAyam} className="w-[100px] h-[100px]" alt="SateAyam"/>
                         </div>
                         <div className="col-span-2 border-b-2 border-b-gray-200 pb-3">SateAyam</div>

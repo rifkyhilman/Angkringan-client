@@ -160,11 +160,11 @@ const DataHistory = [
 ]
 
 const ChartDataPie = [
-    { browser: "chrome", visitors: 275, fill: "var(--color-chrome)", color: "hsl(var(--chart-1))"},
-    { browser: "safari", visitors: 200, fill: "var(--color-safari)", color: "hsl(var(--chart-2))"},
-    { browser: "firefox", visitors: 187, fill: "var(--color-firefox)", color: "hsl(var(--chart-3))"},
-    { browser: "edge", visitors: 173, fill: "var(--color-edge)", color: "hsl(var(--chart-4))"},
-    { browser: "other", visitors: 90, fill: "var(--color-other)", color: "hsl(var(--chart-5))"},
+    { browser: "chrome", visitors: 275, fill: "var(--color-chrome)", color: "--chart-1"},
+    { browser: "safari", visitors: 200, fill: "var(--color-safari)", color: "--chart-2"},
+    { browser: "firefox", visitors: 187, fill: "var(--color-firefox)", color: "--chart-3"},
+    { browser: "edge", visitors: 173, fill: "var(--color-edge)", color: "--chart-4"},
+    { browser: "other", visitors: 90, fill: "var(--color-other)", color: "--chart-5"},
   ];
 
 const ChartConfigPie = {
