@@ -107,9 +107,13 @@ const Navbar = () => {
                         </SheetTrigger>
                         <SheetContent side="right">
                             <SheetHeader>
-                                <SheetTitle>Admin</SheetTitle>
+                                    <SheetTitle>
+                                        <div className="border-y-4 border-y-black bg-slate-200 py-3 mt-10">
+                                            {payload.username}
+                                        </div>
+                                    </SheetTitle>
                             </SheetHeader>
-                            <div className="mt-[4rem]">
+                            <div className="mt-[4.5rem]">
                                 <NavigationMenu>
                                     <NavigationMenuList className="felx flex-col gap-5 items-baseline">
                                         {DataLink.map(data => {
@@ -118,7 +122,7 @@ const Navbar = () => {
                                                 <Link to={data.link}>
                                                     <SheetClose>
                                                         <div className="flex pl-2">
-                                                            <i className="mr-3">{data.icon}</i>
+                                                            <i className={`pr-3 pb-2 ${linkness(data.link)}`}>{data.icon}</i>
                                                             <NavigationMenuLink className={linkness(data.link)}>
                                                                 <span>{data.span}</span>
                                                             </NavigationMenuLink>
