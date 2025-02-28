@@ -25,13 +25,12 @@ const FormAuth = () => {
         setLoading(true);
         
         try {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
+          if (!email || !password) {
             toast({
               title: (
                 <div className="flex items-center gap-2">
                   <CircleX className="w-5 h-5 text-white" /> 
-                  <span>Email Anda Salah !</span>
+                  <span>Email atau Password Tidak boleh kosong !</span>
                 </div>
               ),
               variant: "destructive",
@@ -39,45 +38,46 @@ const FormAuth = () => {
               setLoading: false
             });
             setLoading(false);
-          };
-
-          const response = await fetch(`${import.meta.env.VITE_API}/auth/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({email, password}),
-          });
-    
-          const data = await response.json();
-
-          if (data.accesToken) {
-            localStorage.setItem("Token", data.accesToken); 
-            toast({
-              title: (
-                <div className="flex items-center gap-2">
-                  <CircleCheck className="w-5 h-5 text-white" /> 
-                  <span>Login Berhasil !</span> 
-                </div>
-              ),
-              className: "bg-green-500 text-white",
-              duration: 1500,
-            });
-            setTimeout(()=> {
-              setLoading(false);
-              navigate("/dashboard");
-            }, 1500)
           } else {
-            toast({
-              title: (
-                <div className="flex items-center gap-2">
-                  <CircleX className="w-5 h-5 text-white" /> 
-                  <span>Password Anda Salah !</span>
-                </div>
-              ),
-              variant: "destructive",
-              duration: 1500,
-            });
-            setLoading(false);
+              const response = await fetch(`${import.meta.env.VITE_API}/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({email, password}),
+              });
+        
+              const data = await response.json();
+    
+              if (data.accesToken) {
+                localStorage.setItem("Token", data.accesToken); 
+                toast({
+                  title: (
+                    <div className="flex items-center gap-2">
+                      <CircleCheck className="w-5 h-5 text-white" /> 
+                      <span>Login Berhasil !</span> 
+                    </div>
+                  ),
+                  className: "bg-green-500 text-white",
+                  duration: 1500,
+                });
+                setTimeout(()=> {
+                  setLoading(false);
+                  navigate("/dashboard");
+                }, 1500)
+              } else {
+                toast({
+                  title: (
+                    <div className="flex items-center gap-2">
+                      <CircleX className="w-5 h-5 text-white" /> 
+                      <span>Akun Tidak Terdaftar !</span>
+                    </div>
+                  ),
+                  variant: "destructive",
+                  duration: 1500,
+                });
+                setLoading(false);
+              }
           }
+
         } catch (err) {
           console.error(err);
           toast({
