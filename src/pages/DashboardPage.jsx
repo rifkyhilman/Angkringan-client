@@ -8,7 +8,7 @@ import CardProfitsChart from "@/components/Cards/CardProfitsChart";
 
 const DashboardPage = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto max-sm:px-[3rem]">
             <section className="mt-3">
                 <p>Halaman</p>
                 <h1 className="font-bold">

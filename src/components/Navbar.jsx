@@ -73,9 +73,11 @@ const Navbar = () => {
 
     return (
         <>        
-            <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem] max-sm:px-[4rem] max-sm:sticky max-sm:top-0 max-sm:z-40">
+            <div className="flex justify-between items-center text-white border-b-transparent bg-black py-5 px-[8rem] max-sm:px-[3rem] max-sm:sticky max-sm:top-0 max-sm:z-40">
                 <div className="font-bold text-2xl max-sm:text-lg">
-                    <h1>Angkringan</h1>
+                    <Link to="dashboard">
+                        <h1>Angkringan</h1>
+                    </Link>
                 </div>
                 <div className="max-sm:hidden z-50">
                     <NavigationMenu>

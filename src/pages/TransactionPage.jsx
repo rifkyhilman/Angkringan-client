@@ -33,7 +33,7 @@ const TransactionPage = () => {
     }
 
     return (
-        <div className="container mx-auto flex max-sm:flex-col">
+        <div className="container mx-auto flex max-sm:flex-col max-sm:px-[3rem]">
             <section className="mt-3 mr-7 w-[70%] h-full max-sm:h-[20%] max-sm:w-full">
                 <CategorySlider selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
                 <CardProducts selectedCategory={selectedCategory} onAddToOrder={handleAddToOrder}/>
