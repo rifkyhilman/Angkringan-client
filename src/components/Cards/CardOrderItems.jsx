@@ -1,15 +1,18 @@
 import PropTypes from "prop-types";
+import PaidIcon from "@/assets/img/icons/paid.png";
 import { useState } from "react";
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
     Card,
     CardContent,
     CardHeader,
     CardFooter,
     CardTitle,
-  } from "@/components/ui/card"
+  } from "@/components/ui/card";
 import {
     Dialog,
     DialogClose,
@@ -18,7 +21,17 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
- } from "@/components/ui/dialog"
+ } from "@/components/ui/dialog";
+ import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog";
   
 
 const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
@@ -170,22 +183,22 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                     <div className="flex justify-between mb-3 max-sm:flex-col">
                                         <div className="max-sm:mb-3">
                                             <Label htmlFor="name">
-                                            Nama Pembeli
+                                                Nama Pembeli
                                             </Label>
-                                            <Input id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
+                                            <Input className="mt-2" id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
                                         </div>
                                         <div>
                                             <Label htmlFor="discount" className="text-gray-400">
-                                            Potongan Harga (Rp.)
+                                                Potongan Harga (Rp.)
                                             </Label>
-                                            <Input id="discount" type="number" placeholder="Rp. 000,00" disabled />
+                                            <Input className="mt-2" id="discount" type="number" placeholder="Rp. 000,00" disabled />
                                         </div>
                                     </div>
                                     <div className="mb-5">
                                         <Label htmlFor="cash">
-                                        Jumlah Uang Tunai
+                                            Jumlah Uang Tunai
                                         </Label>
-                                        <Input id="cash" type="number" placeholder="Rp.000,00" onChange={handlePaymentChange} />
+                                        <Input className="mt-2" id="cash" type="number" placeholder="Rp.000,00" onChange={handlePaymentChange} />
                                     </div>
                                 </div>
                                 <DialogFooter>
@@ -196,12 +209,34 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                                 Batal
                                             </Button>
                                         </DialogClose>
-                                        <DialogClose asChild>
-                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                            onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice}>
-                                                Bayar
-                                            </Button>
-                                        </DialogClose>
+                                        <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                                onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice}>
+                                                    Bayar
+                                                </Button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent className="w-[50%] max-sm:w-[90%]">
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle className="text-center mb-10">Pembayaran Berhasil</AlertDialogTitle>
+                                                    <AlertDialogDescription className="flex justify-center">
+                                                        <img src={PaidIcon} className="w-[250px] h-[250px]"/>
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter className="flex sm:justify-center max-sm:justify-center mt-10">
+                                                    <DialogClose asChild>
+                                                            <AlertDialogAction>
+                                                                    <Link to="/history-transaction">
+                                                                        <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                                                                <ExternalLink/>
+                                                                                Cek History
+                                                                        </Button>  
+                                                                    </Link>
+                                                            </AlertDialogAction>
+                                                    </DialogClose>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
                                     </div>
                                 </DialogFooter>
                             </DialogContent>
