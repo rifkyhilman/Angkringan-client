@@ -140,7 +140,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 </>
                             }
                             <p>
-                                Total ({orderItems.length} Items)
+                                Total ({orderItems.reduce((total, item) => total + item.quantity, 0)} Items)
                             </p>
                         </div>
                         <div className="text-end">   
