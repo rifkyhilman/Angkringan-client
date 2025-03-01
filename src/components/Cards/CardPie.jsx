@@ -34,16 +34,6 @@ const CardPie = () => {
               <div className="leading-none text-muted-foreground mb-2 uppercase">
                   januari - februari 2025
               </div>
-              <div className="flex items-center gap-2 font-medium leading-none max-sm:flex-col max-sm:items-start">
-                  {ChartDataPie.map(data => {
-                      return(
-                          <div key={data.browser} className="flex mr-2">
-                              <div className={`bg-[hsl(var(${data.color}))] w-3 h-auto mr-1`}></div>
-                              <p>{data.browser}</p>
-                          </div>
-                      )}
-                  )}
-              </div>
           </CardFooter>
       </Card>
     )
