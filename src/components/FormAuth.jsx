@@ -95,33 +95,28 @@ const FormAuth = () => {
       };
 
     return (
-        <div className="container mx-auto flex justify-center items-center h-screen">
-            <Card className="shadow w-auto">
+        <div className="container mx-auto flex justify-center items-center w-full h-screen max-sm:px-[3rem]">
+            <Card className="shadow lg:w-[35%] md:w-[60%] max-sm:w-full">
                 <CardHeader className="text-center my-7 mx-3">
                     <CardTitle>Masukan Akun</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form className="space-y-4 md:space-y-6 my-7" onSubmit={handleSubmit}>
-                        <div>
-                            <Label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</Label>
-                            <Input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}  required=""/>
-                        </div>
-                        <div>
-                            <Label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Kata Sandi</Label>
-                            <Input type="password" placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required=""/>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <Input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required=""/>
-                                </div>
-                                <div className="ml-3 text-sm">
-                                    <Label for="remember" className="mr-5 text-gray-500 dark:text-gray-300">Ingatkan Saya</Label>
-                                </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="space-y-4 md:space-y-6 my-7">
+                            <div>
+                                <Label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</Label>
+                                <Input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}  required=""/>
                             </div>
-                            <a href="#" className="text-sm ml-5 text-primary-600 hover:underline dark:text-primary-500">Lupa password?</a>
+                            <div>
+                                <Label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Kata Sandi</Label>
+                                <Input type="password" placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required=""/>
+                            </div>
+                            <div>
+                                <a href="#" className="text-sm text-primary-600 hover:underline dark:text-primary-500 max-sm:text-sm">Lupa password?</a>
+                            </div>
+
                         </div>
-                        <Button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center"  disabled={loading === true}> 
+                        <Button type="submit" className="mt-5 w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center"  disabled={loading === true}> 
                           {loading && <Loader2 className="animate-spin" />}
                           Masuk
                         </Button>
