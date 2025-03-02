@@ -176,8 +176,9 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                             <p>Total : </p>
                                             <p>{formattedPriceTotal}</p>
                                         </div>
-                                        <div className="text-end text-green-600 py-5 px-3">
-                                            <p>Kembalian : {formattedChangePayment}</p>
+                                        <div className="flex justify-between text-green-600 py-5 px-3">
+                                            <p>Kembalian : </p>
+                                            <p>{formattedChangePayment}</p>
                                         </div>
                                     </div>
                                     <div className="flex justify-between mb-3 max-sm:flex-col">
