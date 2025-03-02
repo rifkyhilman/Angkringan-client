@@ -24,7 +24,14 @@ const TransactionPage = () => {
             }
         });    
         toast({
-            description: `(+1) ${product.name} Masuk Kedalam Keranjang`,
+            title: (
+                <div className="flex items-center gap-2">
+                  <p className="text-green-500">(+1)</p> 
+                  <p><b>{product.name}</b></p>
+                  <p>Ditambahkan ke Keranjang</p> 
+                </div>
+              ),
+              duration: 1200,
         });
 
     };
@@ -35,6 +42,7 @@ const TransactionPage = () => {
         toast({
             variant: "destructive",
             description: `${nameProduct} Dihapus dari Keranjang`,
+            duration: 1200,
         });
     };
 

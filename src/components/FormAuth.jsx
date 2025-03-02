@@ -57,12 +57,12 @@ const FormAuth = () => {
                     </div>
                   ),
                   className: "bg-green-500 text-white",
-                  duration: 1500,
+                  duration: 1000,
                 });
                 setTimeout(()=> {
                   setLoading(false);
                   navigate("/dashboard");
-                }, 1500)
+                }, 1000)
               } else {
                 toast({
                   title: (
@@ -88,7 +88,7 @@ const FormAuth = () => {
               </div>
             ),
             variant: "destructive",
-            duration: 2000,
+            duration: 1500,
           });
           setLoading(false);
         }
