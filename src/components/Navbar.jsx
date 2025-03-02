@@ -63,12 +63,12 @@ const Navbar = () => {
             </div>
             ),
             variant: "destructive",
-            duration: 1500,
+            duration: 1000,
           });
         setTimeout(()=>{
             localStorage.removeItem("Token"); 
             navigate("/");
-        },1500)
+        },1000)
       };
 
     return (
