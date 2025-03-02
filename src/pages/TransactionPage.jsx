@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast"
-import CardProducts from "@/components/Cards/CardProducts";
-import CardOrderItems from "@/components/Cards/CardOrderItems";
-import CategorySlider from "@/components/CategorySlider";
+import CardProducts from "@/components/TransactionPage/CardProducts";
+import CardOrderItems from "@/components/TransactionPage/CardOrderItems";
+import CategorySlider from "@/components/TransactionPage/CategorySlider";
 
  
 const TransactionPage = () => {

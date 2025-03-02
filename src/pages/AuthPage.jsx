@@ -1,4 +1,4 @@
-import FormAuth from "@/components/FormAuth";
+import FormAuth from "@/components/AuthPage/FormAuth";
 
 const AuthPage = () => {
     return (

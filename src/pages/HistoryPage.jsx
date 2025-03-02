@@ -1,5 +1,5 @@
-import CardHistory from "@/components/Cards/CardHistory";
-import FilterHistory from "@/components/FilterHistory";
+import CardHistory from "@/components/HistoryPage/CardHistory";
+import FilterHistory from "@/components/HistoryPage/FilterHistory";
 
 const UsersPage = () => {
     return (

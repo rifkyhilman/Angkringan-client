@@ -1,9 +1,9 @@
-import CardLimitStock from "@/components/Cards/CardLimitStock";
-import CardPie from "@/components/Cards/CardPie";
-import CardSale from "@/components/Cards/CardSale";
-import CardProfits from "@/components/Cards/CardProfits";
-import CardSaleChart from "@/components/Cards/CardSaleChart";
-import CardProfitsChart from "@/components/Cards/CardProfitsChart";
+import CardLimitStock from "@/components/DashboardPage/CardLimitStock";
+import CardPie from "@/components/DashboardPage/CardPie";
+import CardSale from "@/components/DashboardPage/CardSale";
+import CardProfits from "@/components/DashboardPage/CardProfits";
+import CardSaleChart from "@/components/DashboardPage/CardSaleChart";
+import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
 
 
 const DashboardPage = () => {
