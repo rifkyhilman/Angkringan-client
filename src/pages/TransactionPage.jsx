@@ -25,8 +25,8 @@ const TransactionPage = () => {
         });    
         toast({
             title: (
-                <div className="flex items-center gap-2">
-                  <p className="text-green-500">(+1)</p> 
+                <div className="flex items-center gap-2 max-sm:text-xs">
+                  <p className="text-green-500">+1</p> 
                   <p><b>{product.name}</b></p>
                   <p>Ditambahkan ke Keranjang</p> 
                 </div>
