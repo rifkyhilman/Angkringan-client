@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import axios from 'axios';
 import PaidIcon from "@/assets/img/icons/paid.png";
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
@@ -42,6 +43,9 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
     const totalPrice = subTotalPrice + pajak;
+
+    let changePayment;
+    payment <= totalPrice ? changePayment = 0 : changePayment = payment - totalPrice;
     
     const handleCustomerName = (event) => {
         setCustomer(event.target.value);
@@ -51,19 +55,36 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
         setPayment(event.target.value);
     };
 
-    const handleClickPayment = () => {
-        setCustomer("");
-        setPayment(0);
-        onPayment();
+    const handleClickPayment = async () => {
+        const newOrderItems = orderItems.map(({ categoryProduct, idProduct, imgPath, ...rest }) => rest);
+        const dataTransaction = {
+            customerName: customer,
+            items: newOrderItems,
+            cash: parseInt(payment),
+            totalPrice: totalPrice,
+            cashBack: changePayment 
+        }
+        try {
+            const response = await axios.post('http://localhost:3000/api/transaction', dataTransaction, {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+                  'Content-Type': 'application/json'
+                }
+              });
+
+            console.log(response.data);
+            onPayment();
+            setCustomer("");
+            setPayment(0);
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
     }
 
     const handleCancelPayment = () => {
         setCustomer("");
         setPayment(0);
     }
-
-    let changePayment;
-    payment <= totalPrice ? changePayment = 0 : changePayment = payment - totalPrice;
     
     const formattedPriceSub = subTotalPrice.toLocaleString("id-ID", {
         style: "currency",
