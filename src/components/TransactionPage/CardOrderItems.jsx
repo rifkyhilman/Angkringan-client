@@ -23,22 +23,14 @@ import {
     DialogTitle,
     DialogTrigger,
  } from "@/components/ui/dialog";
- import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog";
+import PaymentSuccess from "@/components/TransactionPage/PaymentSucces.jsx";
   
 
 const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const subTotalPrice = orderItems.reduce((total, item) => total + item.price, 0);
     const [customer, setCustomer] = useState("");
     const [payment, setPayment] = useState(0);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
@@ -60,7 +52,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
         const dataTransaction = {
             customerName: customer,
             items: newOrderItems,
-            cash: parseInt(payment),
+            cash: parseInt(payment), 
             totalPrice: totalPrice,
             cashBack: changePayment 
         }
@@ -71,13 +63,16 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                   'Content-Type': 'application/json'
                 }
               });
-
-            console.log(response.data);
-            onPayment();
-            setCustomer("");
-            setPayment(0);
+            if(response.data){
+                console.log("Pemabayaran Berhasil!");
+                setShowSuccess(true);
+                setCustomer("");
+                setPayment(0);
+                onPayment();
+            }
         } catch (error) {
             console.error('Error posting data:', error);
+            console.log("Pemabayaran Gagal!");
         }
     }
 
@@ -231,38 +226,17 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                                 Batal
                                             </Button>
                                         </DialogClose>
-                                        <AlertDialog>
-                                            <AlertDialogTrigger asChild>
-                                                <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                                onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice}>
-                                                    Bayar
-                                                </Button>
-                                            </AlertDialogTrigger>
-                                            <AlertDialogContent className="w-[50%] max-sm:w-[90%]">
-                                                <AlertDialogHeader>
-                                                    <AlertDialogTitle className="text-center mb-10">Pembayaran Berhasil</AlertDialogTitle>
-                                                    <AlertDialogDescription className="flex justify-center">
-                                                        <img src={PaidIcon} className="w-[250px] h-[250px]"/>
-                                                    </AlertDialogDescription>
-                                                </AlertDialogHeader>
-                                                <AlertDialogFooter className="flex sm:justify-center max-sm:justify-center mt-10">
-                                                    <DialogClose asChild>
-                                                            <AlertDialogAction>
-                                                                    <Link to="/history-transaction">
-                                                                        <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center">
-                                                                                <ExternalLink/>
-                                                                                Cek History
-                                                                        </Button>  
-                                                                    </Link>
-                                                            </AlertDialogAction>
-                                                    </DialogClose>
-                                                </AlertDialogFooter>
-                                            </AlertDialogContent>
-                                        </AlertDialog>
+                                        <DialogClose asChild>
+                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                            onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice}>
+                                                Bayar
+                                            </Button>
+                                        </DialogClose>
                                     </div>
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
+                        {showSuccess && <PaymentSuccess onClose={() =>  setShowSuccess(false)} />}
                     </div>
                 </div>
             </CardFooter>
