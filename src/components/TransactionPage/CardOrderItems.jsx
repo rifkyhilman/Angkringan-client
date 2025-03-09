@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
 import axios from 'axios';
-import PaidIcon from "@/assets/img/icons/paid.png";
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,6 +21,7 @@ import {
     DialogTrigger,
  } from "@/components/ui/dialog";
 import PaymentSuccess from "@/components/TransactionPage/PaymentSucces.jsx";
+import PaymentFailed from "@/components/TransactionPage/PaymentFailed.jsx";
   
 
 const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
@@ -236,7 +234,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
-                        {showSuccess && <PaymentSuccess onClose={() =>  setShowSuccess(false)} />}
+                        {showSuccess ? <PaymentSuccess onClose={() =>  setShowSuccess(false)} /> : <PaymentFailed onClose={() =>  setShowFailed(false)}/>}
                     </div>
                 </div>
             </CardFooter>
