@@ -29,6 +29,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const [customer, setCustomer] = useState("");
     const [payment, setPayment] = useState(0);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showFailed, setShowFailed] = useState(false);
 
     let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
@@ -69,8 +70,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                 onPayment();
             }
         } catch (error) {
+            setShowFailed(true);
             console.error('Error posting data:', error);
-            console.log("Pemabayaran Gagal!");
         }
     }
 
@@ -234,7 +235,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
-                        {showSuccess ? <PaymentSuccess onClose={() =>  setShowSuccess(false)} /> : <PaymentFailed onClose={() =>  setShowFailed(false)}/>}
+                        {showSuccess && <PaymentSuccess onClose={() =>  setShowSuccess(false)} />}
+                        {showFailed && <PaymentFailed onClose={() =>  setShowFailed(false)}/>}
                     </div>
                 </div>
             </CardFooter>

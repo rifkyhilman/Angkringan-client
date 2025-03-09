@@ -31,7 +31,6 @@ const PaymentFailed = ({ onClose }) => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          whileHover={{ rotate: [0, -10, 10, -10, 0] }}
         >
           <XCircle size={72} className="text-white" />
         </motion.div>
@@ -41,7 +40,7 @@ const PaymentFailed = ({ onClose }) => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
         >
-          Pembayaran Gagal
+          Pembayaran Gagal !
         </motion.h2>
       </motion.div>
     </motion.div>
