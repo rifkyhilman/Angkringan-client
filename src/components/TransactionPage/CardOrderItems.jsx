@@ -63,7 +63,6 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                 }
               });
             if(response.data){
-                console.log("Pemabayaran Berhasil!");
                 setShowSuccess(true);
                 setCustomer("");
                 setPayment(0);

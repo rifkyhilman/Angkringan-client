@@ -6,7 +6,7 @@ const PaymentSuccess = ({ onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 1500); // Auto close dalam 1.5 detik
+    }, 3000); // Auto close dalam 3 detik
 
     return () => clearTimeout(timer);
   }, [onClose]);

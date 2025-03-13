@@ -92,7 +92,7 @@ const CardHistory = () => {
                                             <div className="flex justify-between border-b-2 border-b-gray-300 py-5 px-3">
                                                 <p>Total : </p>
                                                 <p>Ytim</p>
-                                            </div>
+                                            </div> 
                                             <div className="text-end text-green-600 py-5 px-3">
                                                 <p>Kembalian : Ytim</p>
                                             </div>
