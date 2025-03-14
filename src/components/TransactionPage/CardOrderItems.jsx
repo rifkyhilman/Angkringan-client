@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Loader2 }  from "lucide-react";
 import {
     Card,
     CardContent,
@@ -13,7 +14,6 @@ import {
   } from "@/components/ui/card";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogFooter,
     DialogHeader,
@@ -30,6 +30,8 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const [payment, setPayment] = useState(0);
     const [showSuccess, setShowSuccess] = useState(false);
     const [showFailed, setShowFailed] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     let pajak;
     subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
@@ -47,6 +49,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     };
 
     const handleClickPayment = async () => {
+        setLoading(true);
         const newOrderItems = orderItems.map(({ categoryProduct, idProduct, imgPath, ...rest }) => rest);
         const dataTransaction = {
             customerName: customer,
@@ -63,18 +66,27 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                 }
               });
             if(response.data){
-                setShowSuccess(true);
-                setCustomer("");
-                setPayment(0);
-                onPayment();
+                setTimeout(()=> {
+                    setOpen(false);
+                    setShowSuccess(true);
+                    setLoading(false);
+                    setCustomer("");
+                    setPayment(0);
+                    onPayment();
+                }, 1000)
             }
         } catch (error) {
-            setShowFailed(true);
+            setTimeout(()=> {
+                setOpen(false);
+                setShowFailed(true);
+                setLoading(false);
+              }, 1000)
             console.error('Error posting data:', error);
         }
     }
 
     const handleCancelPayment = () => {
+        setOpen(false);
         setCustomer("");
         setPayment(0);
     }
@@ -174,9 +186,9 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                         </div>
                     </div>
                     <div className="my-5">
-                        <Dialog>
-                            <DialogTrigger className="w-full" disabled={orderItems.length === 0}>
-                                <Button className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center" disabled={orderItems.length === 0}> 
+                        <Dialog open={open} onOpenChange={setOpen} >
+                            <DialogTrigger className="w-full" disabled={orderItems.length === 0} asChild>
+                                <Button onClick={() => setOpen(true)} className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center" disabled={orderItems.length === 0}> 
                                     Pesan
                                 </Button>
                             </DialogTrigger>
@@ -202,7 +214,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                             </Label>
                                             <Input className="mt-2" id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
                                         </div>
-                                        <div>
+                                        <div> 
                                             <Label htmlFor="discount" className="text-gray-400">
                                                 Potongan Harga (Rp.)
                                             </Label>
@@ -218,18 +230,15 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                 </div>
                                 <DialogFooter>
                                     <div className="flex justify-between w-full p-5 border-t-2 border-t-gray-300">
-                                        <DialogClose asChild>
-                                            <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                            onClick={handleCancelPayment}>
-                                                Batal
-                                            </Button>
-                                        </DialogClose>
-                                        <DialogClose asChild>
-                                            <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                            onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice}>
-                                                Bayar
-                                            </Button>
-                                        </DialogClose>
+                                        <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                        onClick={handleCancelPayment}>
+                                            Batal
+                                        </Button>
+                                        <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                        onClick={handleClickPayment} disabled={customer === "" || payment < totalPrice || loading}>
+                                            {loading && <Loader2 className="animate-spin" />}
+                                            {loading ? "Proses.." : "Bayar"}
+                                        </Button>                                    
                                     </div>
                                 </DialogFooter>
                             </DialogContent>
