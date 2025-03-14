@@ -212,7 +212,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                             <Label htmlFor="name">
                                                 Nama Pembeli
                                             </Label>
-                                            <Input className="mt-2" id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} />
+                                            <Input className="mt-2" id="name" type="text" placeholder="Nama Pembeli" onChange={handleCustomerName} disabled={loading} />
                                         </div>
                                         <div> 
                                             <Label htmlFor="discount" className="text-gray-400">
@@ -225,7 +225,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                         <Label htmlFor="cash">
                                             Jumlah Uang Tunai
                                         </Label>
-                                        <Input className="mt-2" id="cash" type="number" placeholder="Rp.000,00" onChange={handlePaymentChange} />
+                                        <Input className="mt-2" id="cash" type="number" placeholder="Rp.000,00" onChange={handlePaymentChange} disabled={loading} />
                                     </div>
                                 </div>
                                 <DialogFooter>
