@@ -57,6 +57,7 @@ const CardHistory = () => {
         dataTransaction.map((item) => {
             const dateTransaction = item.createdAt.split("T")[0];
             const [year, month, day] = dateTransaction.split("-");
+            const TimeOrder = new Date(item.createdAt);
             return (
                 <Card className="mt-5" key={item.invoiceNumber}>
                     <div className="flex justify-between max-sm:flex-col">
@@ -69,7 +70,7 @@ const CardHistory = () => {
                                     {`${day}-${month}-${year}`}
                                 </p>
                                 <p>
-                                    {item.createdAt.split("T")[1].split(".")[0].substring(0, 5)} WIB
+                                    {TimeOrder.getHours() < 10 ? `0${TimeOrder.getHours()}`: TimeOrder.getHours() } :   {TimeOrder.getMinutes() < 10 ? `0${TimeOrder.getMinutes()}`: TimeOrder.getMinutes() }  WIB
                                 </p>
                             </div>
                         </CardHeader>
