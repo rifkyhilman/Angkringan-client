@@ -8,8 +8,8 @@ import TransactionPage from '@/pages/TransactionPage.jsx';
 import HistoryPage from '@/pages/HistoryPage.jsx';
 import LayoutPage from '@/pages/LayoutPage.jsx';
 
-import ProtectedRoute from '@/components/ProtectedRoute.jsx';
-import RedirectRoute from '@/components/RedirectRoute.jsx';
+import ProtectedRoute from '@/components/AuthPage/ProtectedRoute.jsx';
+import RedirectRoute from '@/components/AuthPage/RedirectRoute.jsx';
 
 const App = () => {
   const router = createBrowserRouter([
