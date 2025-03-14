@@ -19,6 +19,7 @@ import {
     DialogTrigger,
  } from "@/components/ui/dialog"
 import LoaderHistory from "@/components/HistoryPage/LoaderHistory.jsx";
+import ErrorHistory from "@/components/HistoryPage/ErrorHistory.jsx";
 
 
 
@@ -50,7 +51,7 @@ const CardHistory = () => {
     }, [fetchData]);
   
     if (loading) return <LoaderHistory/>;
-    if (error) return <p>Error: {error}</p>;
+    if (error) return <ErrorHistory/>;
 
     return (
         dataTransaction.map((item) => {
