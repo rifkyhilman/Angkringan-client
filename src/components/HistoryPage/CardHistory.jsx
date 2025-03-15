@@ -89,17 +89,43 @@ const CardHistory = () => {
                                 </DialogTrigger>
                                 <DialogContent className="p-0">
                                     <DialogHeader className="p-5 border-b-2 border-b-gray-300">
-                                        <DialogTitle>Pembayaran Tunai</DialogTitle>
+                                        <DialogTitle>{item.invoiceNumber}</DialogTitle>
                                     </DialogHeader>
                                     <div className="px-10 py-5">
-                                        <div className="bg-gray-200 mb-7 p-4 rounded-md dark:text-black">
-                                            <div className="flex justify-between border-b-2 border-b-gray-300 py-5 px-3">
-                                                <p>Total : </p>
-                                                <p>Ytim</p>
-                                            </div> 
-                                            <div className="text-end text-green-600 py-5 px-3">
-                                                <p>Kembalian : Ytim</p>
-                                            </div>
+                                        <div className="flex justify-between">
+                                            <p>Nama Pelanggan :</p>
+                                            <p>{item.customerName}</p>
+                                        </div>     
+                                        <div className="flex justify-between">
+                                            <p>Tanggal : </p>
+                                            <p>{`${day}-${month}-${year}`}</p>
+                                        </div>     
+                                        <div className="flex justify-between">
+                                            <p>Waktu : </p>
+                                            <p>{TimeOrder.getHours() < 10 ? `0${TimeOrder.getHours()}`: TimeOrder.getHours() } :   {TimeOrder.getMinutes() < 10 ? `0${TimeOrder.getMinutes()}`: TimeOrder.getMinutes() }  WIB</p>
+                                        </div> 
+                                        <div className="my-5">
+                                            <p>Barang yang dibeli : </p>
+                                            {item.items.map((barang) => {
+                                                return (
+                                                    <div className="grid grid-cols-3 ml-5">
+                                                        <p>{barang.name}</p>   
+                                                        <p className="text-center">x {barang.quantity}</p> 
+                                                        <p className="text-center">Rp. {barang.price}</p>
+                                                    </div>
+                                            )})}
+                                        </div>     
+                                        <div className="flex justify-between">
+                                            <p>Total : </p>
+                                            <p>Rp. {item.totalPrice}</p>
+                                        </div>     
+                                        <div className="flex justify-between">
+                                            <p>Uang Bayar : </p>
+                                            <p>Rp. {item.cash}</p>
+                                        </div>     
+                                        <div className="flex justify-between">
+                                            <p>Kembalian : </p>
+                                            <p>Rp. {item.cashBack}</p>
                                         </div>
                                     </div>
                                     <DialogFooter>
@@ -107,7 +133,7 @@ const CardHistory = () => {
                                             <DialogClose asChild>
                                                 <Button type="button" className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center"
                                                 >
-                                                    Batal
+                                                    Tutup
                                                 </Button>
                                             </DialogClose>
                                             <DialogClose asChild>
