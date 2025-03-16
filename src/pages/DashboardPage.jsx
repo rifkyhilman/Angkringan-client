@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
+
 import CardLimitStock from "@/components/DashboardPage/CardLimitStock";
 import CardPie from "@/components/DashboardPage/CardPie";
 import CardSale from "@/components/DashboardPage/CardSale";
 import CardProfits from "@/components/DashboardPage/CardProfits";
 import CardSaleChart from "@/components/DashboardPage/CardSaleChart";
 import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
+import LoaderDashboard from "@/components/DashboardPage/LoaderDashboard.jsx";
 
 
 const DashboardPage = () => {
@@ -34,9 +36,6 @@ const DashboardPage = () => {
     useEffect(() => {
         fetchData();
     }, [fetchData]);
-      
-    if (loading) return "Loading...";
-    if (error) return "Error...";
 
     const saleToday = dataTransaction.reduce((total, user) => {
         const subtotal = user.items.reduce((sum, item) => sum + item.quantity, 0);
@@ -50,7 +49,11 @@ const DashboardPage = () => {
     
     console.log(saleToday);
     console.log(priceSaleToday);
-    
+
+
+    if (loading) return <LoaderDashboard/>;
+    if (error) return "Error...";
+
     return (
         <div className="container mx-auto max-sm:px-[3rem]">
             <section className="mt-3">
