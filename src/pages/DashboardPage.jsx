@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 import CardLimitStock from "@/components/DashboardPage/CardLimitStock";
 import CardPie from "@/components/DashboardPage/CardPie";
 import CardSale from "@/components/DashboardPage/CardSale";
@@ -7,6 +9,48 @@ import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
 
 
 const DashboardPage = () => {
+    const [dataTransaction, setDataTransaction] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
+    const fetchData = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+        const response = await axios.get("http://localhost:3000/api/transaction", {
+            headers: {
+            Authorization: `Bearer ${localStorage.getItem('Token')}`,
+            },
+        });
+        const resData = response.data;
+        setDataTransaction(Array.isArray(resData.data) ? resData.data : []);
+        } catch (err) {
+        setError(err.message);
+        } finally {
+        setLoading(false);
+        }
+    }, []);
+    
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+      
+    if (loading) return "Loading...";
+    if (error) return "Error...";
+
+    const saleToday = dataTransaction.reduce((total, user) => {
+        const subtotal = user.items.reduce((sum, item) => sum + item.quantity, 0);
+        return total + subtotal;
+      }, 0);
+
+    const priceSaleToday = dataTransaction.reduce((total, user) => {
+        const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
+        return total + subtotal;
+      }, 0);
+    
+    console.log(saleToday);
+    console.log(priceSaleToday);
+    
     return (
         <div className="container mx-auto max-sm:px-[3rem]">
             <section className="mt-3">
