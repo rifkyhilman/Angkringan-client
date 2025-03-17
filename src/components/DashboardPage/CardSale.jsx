@@ -5,7 +5,13 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 
-const CardSale = () => {
+const CardSale = ({dataSale}) => {
+    const formattedPriceSale = dataSale[1].toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 2,
+      });
+
     return(
         <Card className="px-5 pt-3">
             <CardHeader className= "py-2 px-0">
@@ -13,10 +19,10 @@ const CardSale = () => {
             </CardHeader>
             <CardContent className="font-bold px-0">     
                 <div className="border-b-2 border-b-gray-200 pb-2">
-                    <p>180</p>
+                    <p>{dataSale[0]}</p>
                 </div>
                 <div className="mt-1">
-                    <p>Rp 2,000,000,00</p>
+                    <p>{formattedPriceSale}</p>
                 </div>
             </CardContent>
         </Card>      

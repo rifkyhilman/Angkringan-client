@@ -26,11 +26,11 @@ const DashboardPage = () => {
             },
         });
         const resData = response.data;
-        setDataTransaction(Array.isArray(resData.data) ? resData.data : []);
+            setDataTransaction(Array.isArray(resData.data) ? resData.data : []);
         } catch (err) {
-        setError(err.message);
+            setError(err.message);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     }, []);
     
@@ -47,14 +47,9 @@ const DashboardPage = () => {
         const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
         return total + subtotal;
       }, 0);
-    
-    console.log(saleToday);
-    console.log(priceSaleToday);
-
 
     if (loading) return <LoaderDashboard/>;
     if (error) return <NetError/>;
-
     return (
         <div className="container mx-auto max-sm:px-[3rem]">
             <section className="mt-3">
@@ -64,7 +59,7 @@ const DashboardPage = () => {
                 </h1>
             </section>
             <section className="mt-8 grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-                <CardSale/>
+                <CardSale dataSale={[saleToday, priceSaleToday]}/>
                 <CardSaleChart/>
                 <CardProfits/>
                 <CardProfitsChart/>
