@@ -8,6 +8,7 @@ import CardProfits from "@/components/DashboardPage/CardProfits";
 import CardSaleChart from "@/components/DashboardPage/CardSaleChart";
 import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
 import LoaderDashboard from "@/components/DashboardPage/LoaderDashboard.jsx";
+import NetError from "@/components/NetError";
 
 
 const DashboardPage = () => {
@@ -52,7 +53,7 @@ const DashboardPage = () => {
 
 
     if (loading) return <LoaderDashboard/>;
-    if (error) return "Error...";
+    if (error) return <NetError/>;
 
     return (
         <div className="container mx-auto max-sm:px-[3rem]">

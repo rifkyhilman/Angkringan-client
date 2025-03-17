@@ -1,6 +1,6 @@
 import {TriangleAlert} from "lucide-react";
 
-const ErrorHistory = () => {
+const NetError = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="text-red-700">
@@ -13,4 +13,4 @@ const ErrorHistory = () => {
     )
 }
 
-export default ErrorHistory;
+export default NetError;
