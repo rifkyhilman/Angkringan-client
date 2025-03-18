@@ -12,7 +12,13 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const CardProfitsChart = () => {
+const CardProfitsChart = ({dataProfitSevenday}) => {
+    const profitSevenday = dataProfitSevenday - dataProfitSevenday * 0.3;
+    const formattedProfitSevenday = profitSevenday.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 2,
+      });
     return (
         <Card>
             <CardHeader className="flex-row justify-between">
@@ -20,7 +26,7 @@ const CardProfitsChart = () => {
             </CardHeader>
             <CardContent className="p-0">
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
-                    <p>Rp 13,000,000,00</p>
+                    <p>{formattedProfitSevenday}</p>
                 </div>
                 <ChartContainer config={ChartConfig} className=" h-10 w-full -mb-[4px]">
                     <BarChart accessibilityLayer data={ChartData}>

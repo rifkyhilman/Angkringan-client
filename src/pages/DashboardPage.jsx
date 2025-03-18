@@ -45,22 +45,13 @@ const DashboardPage = () => {
     useEffect(() => {
         fetchData();
     }, [fetchData]);
-
+    
+    const priceSaleToday = todayTransaction.reduce((sum, item) => sum + item.totalPrice, 0);
+    const priceSaleSevenday = sevendayTransaction.reduce((sum, item) => sum + item.totalPrice, 0);
     const saleToday = todayTransaction.reduce((total, user) => {
         const subtotal = user.items.reduce((sum, item) => sum + item.quantity, 0);
         return total + subtotal;
       }, 0);
-
-    const priceSaleToday = todayTransaction.reduce((total, user) => {
-        const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
-        return total + subtotal;
-      }, 0);
-
-    const priceSaleSevenday = sevendayTransaction.reduce((total, user) => {
-        const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
-        return total + subtotal;
-      }, 0);
-
 
     if (loading) return <LoaderDashboard/>;
     if (error) return <NetError/>;
@@ -73,10 +64,10 @@ const DashboardPage = () => {
                 </h1>
             </section>
             <section className="mt-8 grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-                <CardSale dataSale={[saleToday, priceSaleToday]}/>
+                <CardSale dataSaleToday={[saleToday, priceSaleToday]}/>
                 <CardSaleChart dataSaleSevenday={priceSaleSevenday}/>
-                <CardProfits/>
-                <CardProfitsChart/>
+                <CardProfits dataProfitToday={priceSaleToday}/>
+                <CardProfitsChart dataProfitSevenday={priceSaleSevenday}/>
             </section>
             <section className="grid grid-cols-3 gap-5  max-lg:grid-cols-1">
                 <CardPie/>

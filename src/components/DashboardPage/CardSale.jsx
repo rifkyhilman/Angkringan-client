@@ -5,8 +5,8 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 
-const CardSale = ({dataSale}) => {
-    const formattedPriceSale = dataSale[1].toLocaleString("id-ID", {
+const CardSale = ({dataSaleToday}) => {
+    const formattedPriceSale = dataSaleToday[1].toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
         minimumFractionDigits: 2,
@@ -19,7 +19,7 @@ const CardSale = ({dataSale}) => {
             </CardHeader>
             <CardContent className="font-bold px-0">     
                 <div className="border-b-2 border-b-gray-200 pb-2">
-                    <p>{dataSale[0]}</p>
+                    <p>{dataSaleToday[0]}</p>
                 </div>
                 <div className="mt-1">
                     <p>{formattedPriceSale}</p>
