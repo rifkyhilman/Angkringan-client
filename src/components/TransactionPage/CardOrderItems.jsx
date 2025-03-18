@@ -34,7 +34,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
     const [loading, setLoading] = useState(false);
 
     let pajak;
-    subTotalPrice === 0 ? pajak = 0 : pajak = 2000;
+    subTotalPrice === 0 ? pajak = 0 : pajak = subTotalPrice*0.12;
     const totalPrice = subTotalPrice + pajak;
 
     let changePayment;
@@ -102,6 +102,11 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
         minimumFractionDigits: 2,
       });
     const formattedChangePayment = changePayment.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 2,
+    });
+    const formattedPajak = pajak.toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
         minimumFractionDigits: 2,
@@ -176,7 +181,7 @@ const CardOrderItems = ({ orderItems, onDeleteItem, onPayment }) => {
                                         {formattedPriceSub}
                                     </p>
                                     <p className="text-green-500">
-                                        + Rp. {pajak}
+                                        + Rp. {formattedPajak}
                                     </p>
                                 </>
                             }
