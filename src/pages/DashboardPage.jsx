@@ -9,26 +9,34 @@ import CardSaleChart from "@/components/DashboardPage/CardSaleChart";
 import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
 import LoaderDashboard from "@/components/DashboardPage/LoaderDashboard.jsx";
 import NetError from "@/components/NetError";
+import { promise } from "zod";
 
 
 const DashboardPage = () => {
-    const [dataTransaction, setDataTransaction] = useState([]);
+    const [todayTransaction, setTodayTransaction] = useState([]);
+    const [sevendayTransaction, setSevendayTransaction] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
     
     const fetchData = useCallback(async () => {
         setLoading(true);
-        setError(null);
+        setError(false);
         try {
-        const response = await axios.get("http://localhost:3000/api/transaction", {
-            headers: {
-            Authorization: `Bearer ${localStorage.getItem('Token')}`,
-            },
-        });
-        const resData = response.data;
-            setDataTransaction(Array.isArray(resData.data) ? resData.data : []);
+            const [responseToday, responseSevenday] = await Promise.all([
+                axios.get("http://localhost:3000/api/transaction/today", {
+                    headers: {Authorization: `Bearer ${localStorage.getItem('Token')}`},
+                }),
+                axios.get("http://localhost:3000/api/transaction/sevenday", {
+                    headers: {Authorization: `Bearer ${localStorage.getItem('Token')}`},
+                }),
+            ]);
+            const resDataToday = responseToday.data;
+            const resDataSevenday = responseSevenday.data;
+            setTodayTransaction(Array.isArray(resDataToday.data) ? resDataToday.data : []);
+            setSevendayTransaction(Array.isArray(resDataSevenday.data) ? resDataSevenday.data : []);
         } catch (err) {
-            setError(err.message);
+            console.error(err)
+            setError(true);
         } finally {
             setLoading(false);
         }
@@ -38,15 +46,21 @@ const DashboardPage = () => {
         fetchData();
     }, [fetchData]);
 
-    const saleToday = dataTransaction.reduce((total, user) => {
+    const saleToday = todayTransaction.reduce((total, user) => {
         const subtotal = user.items.reduce((sum, item) => sum + item.quantity, 0);
         return total + subtotal;
       }, 0);
 
-    const priceSaleToday = dataTransaction.reduce((total, user) => {
+    const priceSaleToday = todayTransaction.reduce((total, user) => {
         const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
         return total + subtotal;
       }, 0);
+
+    const priceSaleSevenday = sevendayTransaction.reduce((total, user) => {
+        const subtotal = user.items.reduce((sum, item) => sum + item.price, 0);
+        return total + subtotal;
+      }, 0);
+
 
     if (loading) return <LoaderDashboard/>;
     if (error) return <NetError/>;
@@ -60,7 +74,7 @@ const DashboardPage = () => {
             </section>
             <section className="mt-8 grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
                 <CardSale dataSale={[saleToday, priceSaleToday]}/>
-                <CardSaleChart/>
+                <CardSaleChart dataSaleSevenday={priceSaleSevenday}/>
                 <CardProfits/>
                 <CardProfitsChart/>
             </section>

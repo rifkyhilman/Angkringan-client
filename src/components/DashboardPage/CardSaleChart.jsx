@@ -12,7 +12,12 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const CardSaleChart = () => {
+const CardSaleChart = ({dataSaleSevenday}) => {
+    const formattedPriceSale = dataSaleSevenday.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 2,
+      });
     return (
         <Card>
             <CardHeader className="flex-row justify-between">
@@ -20,7 +25,7 @@ const CardSaleChart = () => {
             </CardHeader>
             <CardContent className="p-0">
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
-                    <p>Rp 13,000,000,00</p>
+                    <p>{formattedPriceSale}</p>
                 </div>
                 <ChartContainer config={ChartConfig} className="h-9 w-full">
                     <AreaChart
