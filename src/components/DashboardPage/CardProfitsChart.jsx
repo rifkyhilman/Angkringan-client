@@ -32,8 +32,18 @@ const CardProfitsChart = ({dataProfitSevenday}) => {
                     <BarChart accessibilityLayer data={ChartData}>
                         <CartesianGrid vertical={false} />
                         <ChartTooltip
-                        cursor={false}
-                        content={<ChartTooltipContent hideLabel />}
+                            cursor={false}
+                            content={({ active, payload }) => {
+                                if (active && payload && payload.length) {
+                                    return (
+                                        <div className="bg-white shadow-md p-2 rounded-md border-l-4 border-indigo-200 border-l-indigo-500">
+                                            <p className="text-sm font-semibold">{payload[0].payload.month}</p>
+                                            <p className="text-blue-500 font-bold">Total: {payload[0].value}</p>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            }}
                         />
                         <Bar dataKey="desktop" fill="#6666ff"/>
                     </BarChart>
