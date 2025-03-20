@@ -67,7 +67,7 @@ const DashboardPage = () => {
                 <CardSale dataSaleToday={[saleToday, priceSaleToday]}/>
                 <CardSaleChart dataSaleSevenday={priceSaleSevenday}/>
                 <CardProfits dataProfitToday={priceSaleToday}/>
-                <CardProfitsChart dataProfitSevenday={priceSaleSevenday}/>
+                <CardProfitsChart dataProfitSevenday={priceSaleSevenday} dataChartProfit={sevendayTransaction}/>
             </section>
             <section className="grid grid-cols-3 gap-5  max-lg:grid-cols-1">
                 <CardPie/>
