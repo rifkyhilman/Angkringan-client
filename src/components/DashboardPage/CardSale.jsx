@@ -15,7 +15,7 @@ const CardSale = ({dataSaleToday}) => {
     return(
         <Card className="px-5 pt-3">
             <CardHeader className= "py-2 px-0">
-                <CardTitle className="text-xs text-gray-400 uppercase">Penjualan Hari ini</CardTitle>
+                <CardTitle className="text-sm text-gray-500 capitalize">Penjualan Hari ini</CardTitle>
             </CardHeader>
             <CardContent className="font-bold px-0">     
                 <div className="border-b-2 border-b-gray-200 pb-2">

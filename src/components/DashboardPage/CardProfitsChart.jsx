@@ -42,7 +42,7 @@ const CardProfitsChart = ({dataProfitSevenday, dataChartProfit}) => {
     return (
         <Card>
             <CardHeader className="flex-row justify-between">
-                <CardTitle className="text-xs text-gray-400 uppercase">laba bersih selama 7 hari</CardTitle>
+                <CardTitle className="text-sm text-gray-500 capitalize">laba bersih selama 1 Minggu</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                 <div className="-mt-[0.5rem] mb-5 px-6 font-bold">
