@@ -1,4 +1,3 @@
-import { ChartConfig } from "@/utils/dataDumy"
 import { Bar, BarChart, CartesianGrid } from "recharts"
 import {
   Card,
@@ -12,7 +11,6 @@ import {
 } from "@/components/ui/chart"
 
 const CardProfitsChart = ({dataProfitSevenday, dataChartProfit}) => {
-    const today = new Date().toISOString().split("T")[0];
     const profitSevenday = dataProfitSevenday - dataProfitSevenday * 0.3;
     const formattedProfitSevenday = profitSevenday.toLocaleString("id-ID", {
         style: "currency",
@@ -36,6 +34,10 @@ const CardProfitsChart = ({dataProfitSevenday, dataChartProfit}) => {
             profit: totalPrice - totalPrice * 0.3,
         }))
         .sort((a, b) => new Date(a.date.split("-").reverse().join("-")) - new Date(b.date.split("-").reverse().join("-")));
+
+    const ChartConfig = {
+        color: "#6666ff"
+    };
 
     return (
         <Card>
@@ -65,7 +67,7 @@ const CardProfitsChart = ({dataProfitSevenday, dataChartProfit}) => {
                         />
                         <Bar
                             dataKey="profit"
-                            fill="#6666ff"
+                            fill={ChartConfig.color}
                             radius={[8, 8, 0, 0]}
                         />
                     </BarChart>
