@@ -65,7 +65,7 @@ const DashboardPage = () => {
             </section>
             <section className="mt-8 grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
                 <CardSale dataSaleToday={[saleToday, priceSaleToday]}/>
-                <CardSaleChart dataSaleSevenday={priceSaleSevenday}/>
+                <CardSaleChart dataSaleSevenday={priceSaleSevenday} dataChartSale={sevendayTransaction}/>
                 <CardProfits dataProfitToday={priceSaleToday}/>
                 <CardProfitsChart dataProfitSevenday={priceSaleSevenday} dataChartProfit={sevendayTransaction}/>
             </section>

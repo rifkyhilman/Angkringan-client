@@ -1,4 +1,3 @@
-import { ChartData, ChartConfig } from "@/utils/dataDumy"
 import { Area, AreaChart, CartesianGrid } from "recharts"
 import {
   Card,
@@ -9,15 +8,34 @@ import {
 import {
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart"
 
-const CardSaleChart = ({dataSaleSevenday}) => {
+const CardSaleChart = ({dataSaleSevenday, dataChartSale}) => {
     const formattedPriceSale = dataSaleSevenday.toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
         minimumFractionDigits: 2,
       });
+
+    const groupedSales = dataChartSale.reduce((acc, transaction) => {
+        const date = transaction.createdAt.split("T")[0];
+        const { totalPrice } = transaction;
+        
+        acc[date] = (acc[date] || 0) + totalPrice;
+        return acc;
+    }, {});
+
+    const formattedData = Object.entries(groupedSales)
+        .map(([date, totalPrice]) => ({
+            date: date.split("-").reverse().join("-"),
+            sale: totalPrice
+        }))
+        .sort((a, b) => new Date(a.date.split("-").reverse().join("-")) - new Date(b.date.split("-").reverse().join("-")));
+
+    const ChartConfig = {
+        color: "#6666ff"
+    };
+    
     return (
         <Card>
             <CardHeader className="flex-row justify-between">
@@ -30,22 +48,32 @@ const CardSaleChart = ({dataSaleSevenday}) => {
                 <ChartContainer config={ChartConfig} className="h-9 w-full">
                     <AreaChart
                     accessibilityLayer
-                    data={ChartData}
+                    data={formattedData}
                     margin={{
                         left: -12,
                         right: -12,
                     }}
                     >
-                    <CartesianGrid vertical={false} />
+                        <CartesianGrid vertical={false} />
             
-                    <ChartTooltip
-                        cursor={false}
-                        content={<ChartTooltipContent indicator="line" />}
-                    />
+                        <ChartTooltip
+                            cursor={false}
+                            content={({ active, payload }) => {
+                                if (active && payload && payload.length) {
+                                    return (
+                                        <div className="bg-white shadow-md p-2 rounded-md border-l-4 border-indigo-200 border-l-indigo-500">
+                                            <p className="text-sm font-semibold">Tgl : {payload[0].payload.date}</p>
+                                            <p className="text-blue-500 font-bold">Total : Rp. {payload[0].value.toLocaleString()}</p>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            }}
+                        />
                     <Area
-                        dataKey="desktop"
+                        dataKey="sale"
                         type="natural"
-                        fill="#0000ff"
+                        fill={ChartConfig.color}
                         fillOpacity={0.4}
                         stroke=" #000099"
                     />
