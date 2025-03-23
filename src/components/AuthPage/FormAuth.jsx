@@ -8,9 +8,13 @@ import {
     Card,
     CardContent,
     CardHeader,
-    CardTitle,
-  } from "@/components/ui/card";
-import { CircleCheck, CircleX, Loader2 } from "lucide-react";
+    CardTitle } from "@/components/ui/card";
+import { 
+  CircleCheck, 
+  CircleX, 
+  Loader2,
+  Eye,
+  EyeClosed } from "lucide-react";
 
 
 const FormAuth = () => {
@@ -20,6 +24,12 @@ const FormAuth = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    const handleShow = (e) => {
+      e.preventDefault();
+      setShowPassword(!showPassword);
+    };
+  
 
     const handleSubmit = async(event) =>  {
         event.preventDefault();
@@ -95,12 +105,6 @@ const FormAuth = () => {
         }
       };
 
-      const handleShow = () => {
-        return(
-          setShowPassword(true)
-        )
-      };
-
     return (
         <div className="container mx-auto flex justify-center items-center w-full h-screen max-sm:px-[3rem]">
             <Card className="shadow lg:w-[35%] md:w-[60%] max-sm:w-full">
@@ -116,10 +120,16 @@ const FormAuth = () => {
                             </div> 
                             <div>
                                 <Label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Kata Sandi</Label>
-                                <Input type={showPassword ? "text" : "password"} placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required />
-                                <button onClick={handleShow}>
-                                  klik ini 
-                                </button>
+                                <div className="relative">
+                                  <Input type={showPassword ? "text" : "password"} placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required />
+                                  <button
+                                    onClick={handleShow}
+                                    type="button"
+                                    className="absolute inset-y-0 right-2 flex items-center px-2 text-gray-600"
+                                  >
+                                    {showPassword ? <Eye/> : <EyeClosed/>}
+                                  </button>
+                                </div>
                             </div>
                             <div>
                                 <a href="#" className="text-sm text-primary-600 hover:underline dark:text-primary-500 max-sm:text-sm">Lupa password?</a>
