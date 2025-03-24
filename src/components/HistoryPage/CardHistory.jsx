@@ -55,9 +55,16 @@ const CardHistory = () => {
 
     return (
         dataTransaction.map((item) => {
-            const dateTransaction = item.createdAt.split("T")[0];
+            const dateUTC = item.createdAt;         
+
+            const dateTransaction = dateUTC.split("T")[0];
             const [year, month, day] = dateTransaction.split("-");
-            const TimeOrder = new Date(item.createdAt);
+            
+            const timePart = dateUTC.split("T")[1].split(".")[0];
+            const [hours, minutes] = timePart.split(":");
+
+            const timeTransaction = `${hours} : ${minutes}  WIB`;
+            
             return (
                 <Card className="mt-5" key={item.invoiceNumber}>
                     <div className="flex justify-between max-sm:flex-col">
@@ -69,9 +76,7 @@ const CardHistory = () => {
                                 <p>
                                     {`${day}-${month}-${year}`}
                                 </p>
-                                <p>
-                                    {TimeOrder.getHours() < 10 ? `0${TimeOrder.getHours()}`: TimeOrder.getHours() } :   {TimeOrder.getMinutes() < 10 ? `0${TimeOrder.getMinutes()}`: TimeOrder.getMinutes() }  WIB
-                                </p>
+                                <p>{timeTransaction}</p>
                             </div>
                         </CardHeader>
                         <CardContent>
@@ -102,7 +107,7 @@ const CardHistory = () => {
                                         </div>     
                                         <div className="flex justify-between">
                                             <p>Waktu : </p>
-                                            <p>{TimeOrder.getHours() < 10 ? `0${TimeOrder.getHours()}`: TimeOrder.getHours() } :   {TimeOrder.getMinutes() < 10 ? `0${TimeOrder.getMinutes()}`: TimeOrder.getMinutes() }  WIB</p>
+                                            <p>{timeTransaction}</p>
                                         </div> 
                                         <div className="my-5">
                                             <p>Barang yang dibeli : </p>
