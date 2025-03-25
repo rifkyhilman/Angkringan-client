@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { DataLink } from "@/utils/dataDumy.jsx";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -11,24 +10,42 @@ import {
     SheetTitle,   
     SheetFooter, 
     SheetClose } from "@/components/ui/sheet";
+
 import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuContent } from "@/components/ui/navigation-menu"  
+    NavigationMenuContent } from "@/components/ui/navigation-menu";
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+    } from "@/components/ui/dropdown-menu";
+      
 import { 
     Menu,
     LogOut, 
     Moon,
     Sun,
-    TriangleAlert } from "lucide-react";
-
+    TriangleAlert,
+    House, 
+    ShoppingCart, 
+    History,
+    Box,
+    Users,
+    ChevronDown, 
+    ChevronUp } from "lucide-react";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { toast } = useToast()
+    const { toast } = useToast();
+
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const [dark, setDark] = useState(false);
 
     const token = localStorage.getItem("Token");
     const payload = JSON.parse(atob(token.split(".")[1])); // Decode token payload
@@ -47,7 +64,6 @@ const Navbar = () => {
         return classes
     }
 
-    const [dark, setDark] = useState(false);
 
     const darkModeHandler = () => {
         setDark(!dark);
@@ -118,22 +134,72 @@ const Navbar = () => {
                             <div className="mt-[4.5rem]">
                                 <NavigationMenu>
                                     <NavigationMenuList className="felx flex-col gap-5 items-baseline">
-                                        {DataLink.map(data => {
-                                            return (
-                                            <NavigationMenuItem key={data.span}>
-                                                <Link to={data.link}>
+                                 
+                                            <NavigationMenuItem>
+                                                <Link>
                                                     <SheetClose>
                                                         <div className="flex pl-2">
-                                                            <i className={`pr-3 pb-2 ${linkness(data.link)}`}>{data.icon}</i>
-                                                            <NavigationMenuLink className={linkness(data.link)}>
-                                                                <span>{data.span}</span>
+                                                            <i className={`pr-3 pb-2 ${linkness("dashboard")}`}><House/></i>
+                                                            <NavigationMenuLink className={linkness("dashboard")}>
+                                                                <span>DASHBOARD</span>
                                                             </NavigationMenuLink>
                                                         </div>
                                                     </SheetClose>
                                                 </Link>
                                             </NavigationMenuItem>
-                                            )}
-                                        )}
+
+                                            <NavigationMenuItem>
+                                                <Link>
+                                                    <SheetClose>
+                                                        <div className="flex pl-2">
+                                                            <i className={`pr-3 pb-2 ${linkness("transaction")}`}><ShoppingCart/></i>
+                                                            <NavigationMenuLink className={linkness("transaction")}>
+                                                                <span>TRANSAKSI</span>
+                                                            </NavigationMenuLink>
+                                                        </div>
+                                                    </SheetClose>
+                                                </Link>
+                                            </NavigationMenuItem>
+
+                                            <NavigationMenuItem>
+                                                <Link>
+                                                    <SheetClose>
+                                                        <div className="flex pl-2">
+                                                            <i className={`pr-3 pb-2 ${linkness("history-transaction")}`}><History/></i>
+                                                            <NavigationMenuLink className={linkness("history-transaction")}>
+                                                                <span>HISTORY</span>
+                                                            </NavigationMenuLink>
+                                                        </div>
+                                                    </SheetClose>
+                                                </Link>
+                                            </NavigationMenuItem>
+
+                                            <NavigationMenuItem>
+                                                <Link>
+                                                    <SheetClose>
+                                                        <div className="flex pl-2">
+                                                            <i className={`pr-3 pb-2 ${linkness("master")}`}><Box/></i>
+                                                            <NavigationMenuLink className={linkness("master")}>
+                                                                <span>KELOLA DATA</span>
+                                                            </NavigationMenuLink>
+                                                        </div>
+                                                    </SheetClose>
+                                                </Link>
+                                            </NavigationMenuItem>
+
+                                            <NavigationMenuItem>
+                                                <Link>
+                                                    <SheetClose>
+                                                        <div className="flex pl-2">
+                                                            <i className={`pr-3 pb-2 ${linkness("users")}`}><Users/></i>
+                                                            <NavigationMenuLink className={linkness("users")}>
+                                                                <span>PENGGUNA</span>
+                                                            </NavigationMenuLink>
+                                                        </div>
+                                                    </SheetClose>
+                                                </Link>
+                                            </NavigationMenuItem>
+                                    
                                     </NavigationMenuList>
                                 </NavigationMenu>
                             </div>
@@ -155,18 +221,59 @@ const Navbar = () => {
             <div className="sticky top-0 z-40 bg-gray-200 text-gray-500 flex justify-between max-sm:hidden">      
                 <NavigationMenu className="ml-[8rem]">
                     <NavigationMenuList>
-                        {DataLink.map(data => {
-                            return (
-                            <NavigationMenuItem key={data.span}>
-                                <Link to={data.link}>
-                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness(data.link)}`}>
-                                        <i className="mr-1.5">{data.icon}</i>
-                                        <span className="text-sm pt-[5px]">{data.span}</span>
+               
+                            <NavigationMenuItem>
+                                <Link to="dashboard">
+                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness("dashboard")}`}>
+                                        <i className="mr-1.5"><House/></i>
+                                        <span className="text-sm pt-[5px]">DASHBOARD</span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
-                            )}
-                        )}
+
+                            <NavigationMenuItem>
+                                <DropdownMenu onOpenChange={setIsOpenMenu}>
+                                    <DropdownMenuTrigger className={`flex p-3 items-end ${linkness("dashboard" && "transaction")}`}>
+                                        <Box className="mr-1.5" />
+                                        <span className="text-sm mr-1 uppercase">Kelola Data</span>
+                                        {isOpenMenu ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-48">
+                                        <DropdownMenuItem asChild>
+                                            <Link to="dashboard">Kelola Kategori</Link>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem asChild>
+                                            <Link to="dashboard">Kelola Barang</Link>
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </NavigationMenuItem>
+
+                            <NavigationMenuItem>
+                                <Link to="transaction">
+                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness("transaction")}`}>
+                                        <i className="mr-1.5"><ShoppingCart/></i>
+                                        <span className="text-sm pt-[5px]">TRANSAKSI</span>
+                                    </NavigationMenuLink>
+                                </Link>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <Link to="history-transaction">
+                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness("history-transaction")}`}>
+                                        <i className="mr-1.5"><History/></i>
+                                        <span className="text-sm pt-[5px]">RIWAYAT</span>
+                                    </NavigationMenuLink>
+                                </Link>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <Link>
+                                    <NavigationMenuLink className={`flex py-3 px-3 mr-3 ${linkness("users")}`}>
+                                        <i className="mr-1.5"><Users/></i>
+                                        <span className="text-sm pt-[5px]">PENGGUNA</span>
+                                    </NavigationMenuLink>
+                                </Link>
+                            </NavigationMenuItem>
+
                     </NavigationMenuList>
                 </NavigationMenu>
                 <NavigationMenu className="mr-[10rem]">

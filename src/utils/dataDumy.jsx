@@ -15,8 +15,6 @@ import NasikucingImg from "@/assets/img/products/nasi_kucing.png";
 import SatebasoImg from "@/assets/img/products/sate_baso.png";
 import SateususImg from "@/assets/img/products/sate_usus.png";
 
-import { House, ShoppingCart, History } from "lucide-react";
-
 const DataProducts = [
     {
         idProduct: 11241245,
@@ -120,44 +118,6 @@ const DataKategori = [
     }
 ]
 
-const DataLink = [
-    {
-        icon: <House/>,
-        span: "DASHBOARD",
-        link: "dashboard"
-    },
-    {
-        icon: <ShoppingCart/>,
-        span: "TRANSAKSI",
-        link: "transaction"
-    },
-    {
-        icon: <History/>,
-        span: "HISTORY",
-        link: "history-transaction"
-    }
-];
-
-const DataHistory = [
-    {
-        idHistory : 121424,
-        invoice : "INV-179127436732-762",
-        customerName : "Tokio",
-        dateSale : "16/02/2025" 
-    },
-    {
-        idHistory : 9767812,
-        invoice : "INV-179123795667-654",
-        customerName : "Bunga",
-        dateSale : "06/02/2025" 
-    },
-    {
-        idHistory : 879516235,
-        invoice : "INV-179981726437-876",
-        customerName : "Pecok",
-        dateSale : "10/02/2025" 
-    },
-]
 
 const ChartDataPie = [
     { browser: "chrome", visitors: 275, fill: "var(--color-chrome)"},
@@ -212,11 +172,9 @@ const ChartConfig = {
 
 export {
     DataKategori,
-    DataLink,
     ChartDataPie,
     ChartConfigPie,
     ChartData,
     ChartConfig,
-    DataProducts,
-    DataHistory
+    DataProducts
 }
