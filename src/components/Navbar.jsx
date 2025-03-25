@@ -45,6 +45,7 @@ const Navbar = () => {
     const { toast } = useToast();
 
     const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const [isOpenUser, setIsOpenUser] = useState(false);
     const [dark, setDark] = useState(false);
 
     const token = localStorage.getItem("Token");
@@ -97,23 +98,20 @@ const Navbar = () => {
                 </div>
                 <div className="max-sm:hidden z-50">
                     <NavigationMenu>
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                            <NavigationMenuTrigger className="bg-transparent hover:bg-transparent hover:text-white text-base">
-                                {payload.username}
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <NavigationMenuLink>   
-                                    <Button className="flex items-center mx-3 my-2" onClick={handleLogout}>
-                                        <LogOut/>
-                                        <span className="ml-2">
-                                            Logout
-                                        </span>
-                                    </Button>
-                                </NavigationMenuLink>
-                            </NavigationMenuContent>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
+                        <DropdownMenu onOpenChange={setIsOpenUser}>
+                            <DropdownMenuTrigger className="flex items-center p-3">
+                                <span className="text-sm mr-1 capitalize">{payload.username}</span>
+                                {isOpenUser ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="p-0">
+                                <Button className="flex items-center bg-red-700 text-white w-full" onClick={handleLogout}>
+                                    <LogOut/>
+                                    <span className="ml-2">
+                                        Keluar
+                                    </span>
+                                </Button>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </NavigationMenu>                
                 </div>
                 <div className="hidden max-sm:block">
