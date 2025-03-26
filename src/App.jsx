@@ -6,6 +6,8 @@ import AuthPage from '@/pages/AuthPage.jsx';
 import DashboardPage from '@/pages/DashboardPage.jsx';
 import TransactionPage from '@/pages/TransactionPage.jsx';
 import HistoryPage from '@/pages/HistoryPage.jsx';
+import CategoryPage from '@/pages/master_data/CategoryPage.jsx';
+import ProductsPage from './pages/master_data/ProductsPage.jsx';
 import LayoutPage from '@/pages/LayoutPage.jsx';
 
 import ProtectedRoute from '@/components/AuthPage/ProtectedRoute.jsx';
@@ -22,13 +24,23 @@ const App = () => {
         {
           path:'/dashboard',
           element:<DashboardPage/>
-        },   {
+        },   
+        {
           path:'/transaction',
           element:<TransactionPage/>
-        },   {
+        },   
+        {
           path:'/history-transaction',
           element:<HistoryPage/>
         },
+        {
+          path:'/category',
+          element:<CategoryPage/>
+        },
+        {
+          path:'/products',
+          element:<ProductsPage/>
+        }
       ]
     },       
     {

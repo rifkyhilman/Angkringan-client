@@ -15,9 +15,7 @@ import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuContent } from "@/components/ui/navigation-menu";
+    NavigationMenuList } from "@/components/ui/navigation-menu";
 
 import {
     DropdownMenu,
@@ -55,16 +53,13 @@ const Navbar = () => {
     let {pathname} = useLocation();
     let subpage = pathname.split('/')?.[1]
 
-    const linkness = (type = null) => {
+    const linkness = (path) => {
         let classes = "border-b-2 border-b-transparent"
-
-        if(type === subpage){
+        if(path === subpage || path === "category"){
             classes = "border-b-2 border-b-black text-black"
-        } 
-
+        }
         return classes
-    }
-
+    };
 
     const darkModeHandler = () => {
         setDark(!dark);
@@ -173,16 +168,21 @@ const Navbar = () => {
                                             </NavigationMenuItem>
 
                                             <NavigationMenuItem>
-                                                <Link>
-                                                    <SheetClose>
-                                                        <div className="flex pl-2">
-                                                            <i className={`pr-3 pb-2 ${linkness("master")}`}><Box/></i>
-                                                            <NavigationMenuLink className={linkness("master")}>
-                                                                <span>KELOLA DATA</span>
-                                                            </NavigationMenuLink>
-                                                        </div>
-                                                    </SheetClose>
-                                                </Link>
+                                                <DropdownMenu onOpenChange={setIsOpenMenu}>
+                                                    <DropdownMenuTrigger className={`flex p-3 items-end ${linkness("products")} ${linkness("category")} `}>
+                                                        <Box className="mr-1.5" />
+                                                        <span className="text-sm mr-1 uppercase">Kelola Data</span>
+                                                        {isOpenMenu ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent className="w-48">
+                                                        <DropdownMenuItem asChild>
+                                                            <Link to="category">Kelola Kategori</Link>
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem asChild>
+                                                            <Link to="products">Kelola Barang</Link>
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
                                             </NavigationMenuItem>
 
                                             <NavigationMenuItem>
@@ -231,17 +231,19 @@ const Navbar = () => {
 
                             <NavigationMenuItem>
                                 <DropdownMenu onOpenChange={setIsOpenMenu}>
-                                    <DropdownMenuTrigger className={`flex p-3 items-end ${linkness("dashboard" && "transaction")}`}>
+                                    <DropdownMenuTrigger className={`flex p-3 items-end ${
+                                        pathname === "/products" || pathname === "/category" ? "border-b-2 border-b-black text-black" : "border-b-2 border-b-transparent"
+                                    }`}>
                                         <Box className="mr-1.5" />
                                         <span className="text-sm mr-1 uppercase">Kelola Data</span>
                                         {isOpenMenu ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="w-48">
                                         <DropdownMenuItem asChild>
-                                            <Link to="dashboard">Kelola Kategori</Link>
+                                            <Link to="category">Kelola Kategori</Link>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem asChild>
-                                            <Link to="dashboard">Kelola Barang</Link>
+                                            <Link to="products">Kelola Barang</Link>
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
