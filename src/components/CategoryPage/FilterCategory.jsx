@@ -34,7 +34,8 @@ const FilterCategory = () => {
         }));
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         console.log("Fungsi handleUpload kepanggil!"); // Debugging
 
@@ -43,12 +44,11 @@ const FilterCategory = () => {
         imageData.append("file", formData.picture);
         imageData.append("upload_preset", "pos_geh");
 
-        console.log([...imageData.entries()]); // Cek apakah file masuk
 
         try {
             // Upload ke Cloudinary
             const uploadRes = await axios.post(
-                "https://api.cloudinary.com/v1_1/acumalaka/resources/image", 
+                "https://api.cloudinary.com/v1_1/acumalaka/image/upload", 
                 imageData
               );
 
