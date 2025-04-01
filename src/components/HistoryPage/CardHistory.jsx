@@ -18,7 +18,7 @@ import {
     DialogTitle,
     DialogTrigger,
  } from "@/components/ui/dialog"
-import LoaderHistory from "@/components/HistoryPage/LoaderHistory.jsx";
+import LoaderSpinner from "@/components/LoaderSpinner.jsx";
 import NetError from "@/components/NetError.jsx";
 
 
@@ -50,7 +50,7 @@ const CardHistory = () => {
       fetchData();
     }, [fetchData]);
   
-    if (loading) return <LoaderHistory/>;
+    if (loading) return <LoaderSpinner/>;
     if (error) return <NetError/>;
 
     return (

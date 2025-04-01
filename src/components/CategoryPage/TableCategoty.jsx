@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
+import { Button } from "@/components/ui/button";
 import {
     Table,
     TableBody,
@@ -7,26 +10,68 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
+  import LoaderSpinner from "@/components/LoaderSpinner";
+  import NetError from "@/components/NetError";
+
   
 const TableCategory = () => {
+    const [dataCategories, setDataCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchData = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.get("http://localhost:3000/api/category", {
+                headers: {
+                Authorization: `Bearer ${localStorage.getItem('Token')}`,
+                },
+            });
+            const resData = response.data;
+            setDataCategories(Array.isArray(resData.data) ? resData.data : []);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+    
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+    
+    if (loading) return <LoaderSpinner/>;
+    if (error) return <NetError/>;
+    
     return(
         <div className="mt-8 bg-white">
             <Table>
                 <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead>Nama Kategori</TableHead>
+                    <TableHead className="text-center pr-[40px]">Deskripsi</TableHead>
+                    <TableHead className="text-right pr-[142px]">Aksi</TableHead>
                 </TableRow>
                 </TableHeader>
                 <TableBody>
-                <TableRow>
-                    <TableCell className="font-medium">INV001</TableCell>
-                    <TableCell>Paid</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
-                </TableRow>
+                {dataCategories.map((item)=> {
+                    return (
+                        <TableRow>
+                            <TableCell className="font-medium">{item.categoryName}</TableCell>
+                            <TableCell className="text-center">{item.description}</TableCell>
+                            <TableCell className="text-right">
+                                <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-600 rounded-3xl text-xs px-5 py-2.5 mr-2 text-center">
+                                    Ubah
+                                </Button>
+                                <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                    Hapus
+                                </Button>
+                            </TableCell>
+                        </TableRow>
+                    )}
+                )}
                 </TableBody>
             </Table>      
         </div>

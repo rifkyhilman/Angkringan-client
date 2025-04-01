@@ -7,9 +7,8 @@ import CardSale from "@/components/DashboardPage/CardSale";
 import CardProfits from "@/components/DashboardPage/CardProfits";
 import CardSaleChart from "@/components/DashboardPage/CardSaleChart";
 import CardProfitsChart from "@/components/DashboardPage/CardProfitsChart";
-import LoaderDashboard from "@/components/DashboardPage/LoaderDashboard.jsx";
+import LoaderSkeleton from "@/components/LoaderSkeleton.jsx";
 import NetError from "@/components/NetError";
-import { promise } from "zod";
 
 
 const DashboardPage = () => {
@@ -53,7 +52,7 @@ const DashboardPage = () => {
         return total + subtotal;
       }, 0);
 
-    if (loading) return <LoaderDashboard/>;
+    if (loading) return <LoaderSkeleton/>;
     if (error) return <NetError/>;
     return (
         <div className="container mx-auto max-sm:px-[3rem]">
