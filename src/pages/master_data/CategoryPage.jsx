@@ -1,4 +1,5 @@
 import FilterCategory from "@/components/CategoryPage/FilterCategory";
+import TableCategory from "@/components/CategoryPage/TableCategoty";
 
 const CategoryPage = () => {
     return (
@@ -11,6 +12,7 @@ const CategoryPage = () => {
             </section>
             <section>
                 <FilterCategory/>
+                <TableCategory/>
             </section>
         </div>
     )
