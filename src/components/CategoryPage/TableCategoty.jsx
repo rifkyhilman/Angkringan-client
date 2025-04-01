@@ -59,7 +59,10 @@ const TableCategory = () => {
                 {dataCategories.map((item)=> {
                     return (
                         <TableRow>
-                            <TableCell className="font-medium">{item.categoryName}</TableCell>
+                            <TableCell className="flex items-center">
+                                <img src={item.pictureURL} className="w-[80px] h-[80px] mr-5" />
+                                {item.categoryName}
+                            </TableCell>
                             <TableCell className="text-center">{item.description}</TableCell>
                             <TableCell className="text-right">
                                 <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-600 rounded-3xl text-xs px-5 py-2.5 mr-2 text-center">
