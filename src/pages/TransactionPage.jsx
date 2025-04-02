@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast"
 import CardProducts from "@/components/TransactionPage/CardProducts";
 import CardOrderItems from "@/components/TransactionPage/CardOrderItems";
@@ -6,9 +7,30 @@ import CategorySlider from "@/components/TransactionPage/CategorySlider";
 
  
 const TransactionPage = () => {
+    const { toast } = useToast();
+    const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [orderItems, setOrderItems] = useState([]);
-    const { toast } = useToast();
+
+    const fetchData = useCallback(async () => {
+        try {
+            const response = await axios.get("http://localhost:3000/api/category", {
+                headers: {
+                Authorization: `Bearer ${localStorage.getItem('Token')}`,
+                },
+            });
+            const resData = response.data;
+            setCategories(Array.isArray(resData.data) ? resData.data : []);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+    
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
     const handleAddToOrder = (product) => {
         setOrderItems((prevItems) => {
@@ -48,12 +70,12 @@ const TransactionPage = () => {
 
     const handlePaymentSucces = () => {
         setOrderItems([]);
-    }
+    };
 
     return (
         <div className="container mx-auto flex max-sm:flex-col max-sm:px-[3rem]">
             <section className="mt-3 mr-7 w-[70%] h-full max-sm:h-[20%] max-sm:w-full">
-                <CategorySlider selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+                <CategorySlider selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} dataCategories={categories}/>
                 <CardProducts selectedCategory={selectedCategory} onAddToOrder={handleAddToOrder}/>
             </section>
             <section className="mt-3 w-[30%] h-full max-sm:h-0 max-sm:w-full">
