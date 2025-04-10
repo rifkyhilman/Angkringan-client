@@ -42,6 +42,21 @@ const TableCategory = () => {
         fetchData();
     }, [fetchData]);
     
+    const handleDeleteCategory = async(id) => {
+        try {
+            const response = await axios.delete(`http://localhost:3000/api/category/${id}`,{
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log(response.message)
+        } catch (err) {
+            console.error(err)
+        }
+    };
+
     if (loading) return <LoaderSpinner/>;
     if (error) return <NetError/>;
     
@@ -68,7 +83,8 @@ const TableCategory = () => {
                                 <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-600 rounded-3xl text-xs px-5 py-2.5 mr-2 text-center">
                                     Ubah
                                 </Button>
-                                <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                onClick={() => handleDeleteCategory(item._id)} >
                                     Hapus
                                 </Button>
                             </TableCell>
