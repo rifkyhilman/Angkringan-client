@@ -10,8 +10,8 @@ import {
     TableRow,
   } from "@/components/ui/table"
 
-  import LoaderSpinner from "@/components/LoaderSpinner";
-  import NetError from "@/components/NetError";
+import LoaderSpinner from "@/components/LoaderSpinner";
+import NetError from "@/components/NetError";
 
   
 const TableCategory = () => {
@@ -50,8 +50,11 @@ const TableCategory = () => {
                     'Content-Type': 'application/json'
                 }
             });
-
-            console.log(response.message)
+            if(response.data.deletedCategory._id){
+                const updatedCategory = orderItems.filter(item => item._id !== id);
+                setDataCategories(updatedCategory);
+                console.log(response.message);
+            }
         } catch (err) {
             console.error(err)
         }
