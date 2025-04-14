@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -34,68 +35,45 @@ const FormAuth = () => {
     const handleSubmit = async(event) =>  {
         event.preventDefault();
         setLoading(true);
-        
+
         try {
-          if (!email || !password) {
+          const dataAuth = {
+            email: email,
+            password: password
+          };
+
+          const response = await axios.post(`${import.meta.env.VITE_API}/auth/login`, 
+            dataAuth, 
+            { headers: { 'Content-Type': 'application/json' }
+          });
+      
+          console.log(response)
+          
+          if (response.data.accesToken) {
+            localStorage.setItem("Token", response.data.accesToken); 
             toast({
               title: (
                 <div className="flex items-center gap-2">
-                  <CircleX className="w-5 h-5 text-white" /> 
-                  <span>Email atau Password Tidak boleh kosong !</span>
+                  <CircleCheck className="w-5 h-5 text-white" /> 
+                  <span>Login Berhasil !</span> 
                 </div>
               ),
-              variant: "destructive",
-              duration: 1500,
-              setLoading: false
+              className: "bg-green-500 text-white",
+              duration: 1000,
             });
-            setLoading(false);
-          } else {
-              const response = await fetch(`${import.meta.env.VITE_API}/auth/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({email, password}),
-              });
-        
-              const data = await response.json();
-    
-              if (data.accesToken) {
-                localStorage.setItem("Token", data.accesToken); 
-                toast({
-                  title: (
-                    <div className="flex items-center gap-2">
-                      <CircleCheck className="w-5 h-5 text-white" /> 
-                      <span>Login Berhasil !</span> 
-                    </div>
-                  ),
-                  className: "bg-green-500 text-white",
-                  duration: 1000,
-                });
-                setTimeout(()=> {
-                  setLoading(false);
-                  navigate("/dashboard");
-                }, 1000)
-              } else {
-                toast({
-                  title: (
-                    <div className="flex items-center gap-2">
-                      <CircleX className="w-5 h-5 text-white" /> 
-                      <span>Akun Tidak Terdaftar !</span>
-                    </div>
-                  ),
-                  variant: "destructive",
-                  duration: 1500,
-                });
-                setLoading(false);
-              }
-          }
-
+            setTimeout(()=> {
+              setLoading(false);
+              navigate("/dashboard");
+            }, 1000)
+          } 
+          
         } catch (err) {
           console.error(err);
           toast({
             title: (
               <div className="flex items-center gap-2">
                 <CircleX className="w-5 h-5 text-white" /> 
-                <span>Terjadi Kesalan Server !</span>
+                <span>{err.response.data.message}</span>
               </div>
             ),
             variant: "destructive",
@@ -116,12 +94,12 @@ const FormAuth = () => {
                         <div className="space-y-4 md:space-y-6 my-7">
                             <div>
                                 <Label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</Label>
-                                <Input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}  required />
+                                <Input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} autoComplete="username" required />
                             </div> 
                             <div>
                                 <Label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Kata Sandi</Label>
                                 <div className="relative">
-                                  <Input type={showPassword ? "text" : "password"} placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required />
+                                  <Input type={showPassword ? "text" : "password"} placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required />
                                   <button
                                     onClick={handleShow}
                                     type="button"
