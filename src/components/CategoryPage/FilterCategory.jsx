@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -15,17 +14,17 @@ import {
     DialogTitle,
     DialogTrigger,
  } from "@/components/ui/dialog";
-
-
 import { 
     Search, 
     Plus,
     CircleCheck, 
-    CircleX } from "lucide-react";
+    CircleX,
+    Loader2 } from "lucide-react";
 
-const FilterCategory = () => {
+const FilterCategory = ({ setDataCategories }) => {
     const { toast } = useToast();
-
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         picture: null,
         name: "",
@@ -42,6 +41,7 @@ const FilterCategory = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         // Upload gambar ke Cloudinary
         const imageData = new FormData();
@@ -59,6 +59,7 @@ const FilterCategory = () => {
             const dataCategories = {
                 categoryName: formData.name,
                 description: formData.description,
+                publicId: uploadRes.data.public_id,
                 pictureURL: uploadRes.data.secure_url
             }
 
@@ -69,9 +70,10 @@ const FilterCategory = () => {
                 }
               });
 
-            console.log(response)
-
             if (response.data) {
+                setDataCategories(prev => [...prev, response.data.data]);
+                setOpen(false);
+                setLoading(false);
                 toast({
                     title: (
                       <div className="flex items-center gap-2">
@@ -82,6 +84,7 @@ const FilterCategory = () => {
                     className: "bg-green-500 text-white",
                     duration: 1000,
                   });
+      
             } else {
                 toast({
                     title: (
@@ -93,6 +96,7 @@ const FilterCategory = () => {
                     variant: "destructive",
                     duration: 1500,
                   });
+                  setOpen(false);
             }
         } catch (err) {
             console.error(err);
@@ -111,9 +115,9 @@ const FilterCategory = () => {
 
     return(
         <div className="flex mt-5">
-            <Dialog>
+            <Dialog open={open} onOpenChange={setOpen} >
                 <DialogTrigger className="max-sm:w-full">
-                    <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 text-xs px-5 py-2.5 text-center capitalize">
+                    <Button onClick={() => setOpen(true)} className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 text-xs px-5 py-2.5 text-center capitalize">
                         <Plus/>
                         tambah data
                     </Button>
@@ -141,15 +145,15 @@ const FilterCategory = () => {
                             <DialogFooter>
                                 <div className="flex justify-between w-full p-5 border-t-2 border-t-gray-300">
                                     <DialogClose asChild>
-                                        <Button type="button" className="border border-black hover:bg-gray-200 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center"
+                                        <Button onClick={() => setOpen(false)} type="button" className="border border-black hover:bg-gray-200 focus:ring-4 focus:outline-none rounded-3xl text-xs px-5 py-2.5 text-center"
                                         >
-                                            Tutup
+                                        Tutup
                                         </Button>
                                     </DialogClose>
                                     <Button type="submit" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                    >
-                                        <Plus/>
-                                        Simpan
+                                    disabled={loading}>
+                                        {loading && <Loader2 className="animate-spin" />}
+                                        {loading ? "Proses.." : "Simpan"}
                                     </Button>
                                 </div>
                             </DialogFooter>

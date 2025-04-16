@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useCallback } from "react";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
     Table,
@@ -9,38 +9,22 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-
-import LoaderSpinner from "@/components/LoaderSpinner";
-import NetError from "@/components/NetError";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { CircleX, CircleCheck } from "lucide-react";
 
   
-const TableCategory = () => {
-    const [dataCategories, setDataCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const fetchData = useCallback(async () => {
-        setLoading(true);
-        setError(null);
-
-        try {
-            const response = await axios.get("http://localhost:3000/api/category", {
-                headers: {
-                Authorization: `Bearer ${localStorage.getItem('Token')}`,
-                },
-            });
-            const resData = response.data;
-            setDataCategories(Array.isArray(resData.data) ? resData.data : []);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-    
-    useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+const TableCategory = ({ dataCategories, setDataCategories }) => {
+    const { toast } = useToast();
     
     const handleDeleteCategory = async(id) => {
         try {
@@ -51,17 +35,31 @@ const TableCategory = () => {
                 }
             });
             if(response.data.deletedCategory._id){
-                const updatedCategory = orderItems.filter(item => item._id !== id);
-                setDataCategories(updatedCategory);
-                console.log(response.message);
+                setDataCategories((prev) => prev.filter(item => item._id !== id));
+                toast({
+                    title: (
+                      <div className="flex items-center gap-2">
+                        <CircleCheck className="w-5 h-5 text-white" /> 
+                        <span>Data Berhasil Terhapus !</span>
+                      </div>
+                    ),
+                    variant: "destructive",
+                    duration: 1500,
+                  });
             }
         } catch (err) {
-            console.error(err)
+            toast({
+                title: (
+                  <div className="flex items-center gap-2">
+                    <CircleX className="w-5 h-5 text-white" /> 
+                    <span>{err.response.data.message}</span>
+                  </div>
+                ),
+                variant: "destructive",
+                duration: 1500,
+              });
         }
     };
-
-    if (loading) return <LoaderSpinner/>;
-    if (error) return <NetError/>;
     
     return(
         <div className="mt-8 bg-white">
@@ -86,10 +84,30 @@ const TableCategory = () => {
                                 <Button className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-600 rounded-3xl text-xs px-5 py-2.5 mr-2 text-center">
                                     Ubah
                                 </Button>
-                                <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center"
-                                onClick={() => handleDeleteCategory(item._id)} >
-                                    Hapus
-                                </Button>
+                                <AlertDialog>
+                                    <AlertDialogTrigger>
+                                        <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center">
+                                            Hapus
+                                        </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Apakah anda yakin ingin menghapus data kategori ?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                              Jika anda yakin ingin menghapus data ketegoti ini, maka data kategori ini akan terhapus secara permanen
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Batal</AlertDialogCancel>
+                                            <AlertDialogAction>
+                                                <Button className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-600 rounded-3xl text-xs px-5 py-2.5 text-center"
+                                                onClick={() => handleDeleteCategory(item._id)} >
+                                                    Hapus
+                                                </Button>
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </TableCell>
                         </TableRow>
                     )}

@@ -46,9 +46,7 @@ const FormAuth = () => {
             dataAuth, 
             { headers: { 'Content-Type': 'application/json' }
           });
-      
-          console.log(response)
-          
+            
           if (response.data.accesToken) {
             localStorage.setItem("Token", response.data.accesToken); 
             toast({
